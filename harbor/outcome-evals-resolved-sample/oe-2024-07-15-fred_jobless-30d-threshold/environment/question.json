@@ -1,0 +1,36 @@
+{
+  "id": "oe-2024-07-15-fred_jobless-30d-threshold",
+  "question": "Will U.S. initial unemployment insurance claims (DOL, seasonally adjusted, week ending) for the latest weekly reading dated on or before 2024-08-14 (expected: 2024-08-10) be below 205,000?",
+  "kind": "binary",
+  "made_on": "2024-07-15",
+  "deadline": "2024-08-14",
+  "series_id": "fred_jobless",
+  "rule": {
+    "comparator": "<",
+    "threshold": 205000.0,
+    "pick": "last_on_or_before",
+    "period": "W",
+    "grace_days": 51,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "a round number near the lower quartile of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Department of Labor.",
+  "license": "Public domain (U.S. Government work)",
+  "unit": "count",
+  "split": "resolved_history",
+  "cutoff": "2024-07-06",
+  "anchor": {
+    "timestamp": "2024-07-06",
+    "value": 223000.0
+  },
+  "base_rate": 0.22286821705426357,
+  "base_change": -2000.0,
+  "scale": 11000.0,
+  "tags": [
+    "us_dol",
+    "30d",
+    "W"
+  ]
+}

@@ -62,7 +62,7 @@ jobs:
       - run: harbor lint harbor/outcome-evals-resolved-sample/oe-*
       - name: Fixed-answer baseline (the oracle agent runs solution/solve.sh; no model)
         run: harbor run -p harbor/outcome-evals-resolved-sample -a oracle -e docker -n 8 -y -o jobs --job-name ci
-      - run: python scripts/check_harbor_job.py jobs/ci --expect 51
+      - run: python scripts/check_harbor_job.py jobs/ci --expect 52
 
   openenv:
     runs-on: ubuntu-latest

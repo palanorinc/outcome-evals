@@ -1,0 +1,16 @@
+{
+  "id": "oe-2025-10-15-fred_gas_price_regular-90d-threshold",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 2.779,
+  "outcome": false,
+  "scale": 0.1795,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-01-12",
+    "reading_value": 2.779,
+    "value": 2.779,
+    "outcome": false
+  }
+}

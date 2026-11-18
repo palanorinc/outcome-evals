@@ -1,0 +1,32 @@
+{
+  "id": "oe-2024-10-15-rates.spread_2y10y-90d-number",
+  "question": "What will the 10-year minus 2-year U.S. Treasury par yield spread (Treasury daily par yield curve, percentage points) be for 2025-01-13 (or the last business day before it with a published reading)?",
+  "kind": "number",
+  "made_on": "2024-10-15",
+  "deadline": "2025-01-13",
+  "series_id": "rates.spread_2y10y",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "B",
+    "grace_days": 46,
+    "transform": {
+      "kind": "level"
+    }
+  },
+  "source": "Source: U.S. Treasury, Bureau of the Fiscal Service",
+  "license": "Fiscal Data API license (public domain)",
+  "unit": "pp",
+  "split": "resolved_history",
+  "cutoff": "2024-10-11",
+  "anchor": {
+    "timestamp": "2024-10-11",
+    "value": 0.13
+  },
+  "base_change": -0.07,
+  "scale": 0.18000000000000005,
+  "tags": [
+    "us_treasury",
+    "90d",
+    "B"
+  ]
+}

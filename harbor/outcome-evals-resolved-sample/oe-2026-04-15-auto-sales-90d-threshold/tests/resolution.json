@@ -1,0 +1,16 @@
+{
+  "id": "oe-2026-04-15-auto-sales-90d-threshold",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 16.596,
+  "outcome": false,
+  "scale": 0.702,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-07-01",
+    "reading_value": 16.596,
+    "value": 16.596,
+    "outcome": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "oe-2025-10-15-fred_u6_underemployment-90d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 8.1,
+  "outcome": true,
+  "scale": 0.2999999999999998,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-01-01",
+    "reading_value": 8.1,
+    "value": 8.1,
+    "outcome": true
+  }
+}

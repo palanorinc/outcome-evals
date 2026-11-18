@@ -1,0 +1,16 @@
+{
+  "id": "oe-2025-07-15-continued-claims-90d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 1947000.0,
+  "outcome": false,
+  "scale": 86000.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-10-11",
+    "reading_value": 1947000.0,
+    "value": 1947000.0,
+    "outcome": false
+  }
+}

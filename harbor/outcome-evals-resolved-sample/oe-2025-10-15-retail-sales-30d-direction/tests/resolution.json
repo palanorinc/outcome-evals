@@ -1,0 +1,18 @@
+{
+  "id": "oe-2025-10-15-retail-sales-30d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 0.717562287,
+  "outcome": true,
+  "scale": 0.7873676406152663,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-11-01",
+    "reading_value": 705453.0,
+    "comparison_timestamp": "2025-10-01",
+    "comparison_value": 700427.0,
+    "value": 0.717562287,
+    "outcome": true
+  }
+}

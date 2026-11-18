@@ -1,0 +1,18 @@
+{
+  "id": "oe-2026-01-15-construction-30d-threshold",
+  "kind": "binary",
+  "status": "resolved",
+  "value": -0.27112873,
+  "outcome": true,
+  "scale": 0.6007572806006278,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-02-01",
+    "reading_value": 2189683.0,
+    "comparison_timestamp": "2026-01-01",
+    "comparison_value": 2195636.0,
+    "value": -0.27112873,
+    "outcome": true
+  }
+}

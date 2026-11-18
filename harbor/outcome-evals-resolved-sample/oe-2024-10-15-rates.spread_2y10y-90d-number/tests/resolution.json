@@ -1,0 +1,15 @@
+{
+  "id": "oe-2024-10-15-rates.spread_2y10y-90d-number",
+  "kind": "number",
+  "status": "resolved",
+  "value": 0.39,
+  "outcome": null,
+  "scale": 0.18000000000000005,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-01-13",
+    "reading_value": 0.39,
+    "value": 0.39
+  }
+}

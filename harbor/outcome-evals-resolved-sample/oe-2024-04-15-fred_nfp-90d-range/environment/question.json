@@ -1,0 +1,38 @@
+{
+  "id": "oe-2024-04-15-fred_nfp-90d-range",
+  "question": "Will the one-month change in U.S. nonfarm payrolls (BLS, seasonally adjusted, thousands of jobs) for July 2024 (the latest monthly reading dated on or before 2024-07-14) be at least 100 thousand and below 325 thousand?",
+  "kind": "binary",
+  "made_on": "2024-04-15",
+  "deadline": "2024-07-14",
+  "series_id": "fred_nfp",
+  "rule": {
+    "comparator": "between",
+    "low": 100.0,
+    "high": 325.0,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "change",
+      "lag": "1M"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "thousands of persons",
+  "split": "resolved_history",
+  "cutoff": "2024-03-01",
+  "anchor": {
+    "timestamp": "2024-03-01",
+    "value": 228.0
+  },
+  "base_rate": 0.5,
+  "base_change": -19.0,
+  "scale": 116.0,
+  "tags": [
+    "bls",
+    "90d",
+    "M"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "oe-2026-01-15-fred_cpi-30d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 2.43400411,
+  "outcome": true,
+  "scale": 0.36311345795505545,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-02-01",
+    "reading_value": 327.46,
+    "comparison_timestamp": "2025-02-01",
+    "comparison_value": 319.679,
+    "value": 2.43400411,
+    "outcome": true
+  }
+}

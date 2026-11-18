@@ -1,0 +1,37 @@
+{
+  "id": "oe-2026-07-15-fred_pcepilfe-30d-threshold",
+  "question": "Will the 12-month change in the U.S. core PCE price index, excluding food and energy (BEA, seasonally adjusted; computed from the index) for August 2026 (the latest monthly reading dated on or before 2026-08-14) be above 3.30%?",
+  "kind": "binary",
+  "made_on": "2026-07-15",
+  "deadline": "2026-08-14",
+  "series_id": "fred_pcepilfe",
+  "rule": {
+    "comparator": ">",
+    "threshold": 3.3,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 107,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "a round number near the upper quartile of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Economic Analysis",
+  "license": "U.S. Government work (public domain)",
+  "unit": "index (2017=100)",
+  "split": "resolved_history",
+  "cutoff": "2026-05-01",
+  "anchor": {
+    "timestamp": "2026-05-01",
+    "value": 3.161709771
+  },
+  "base_rate": 0.3076923076923077,
+  "base_change": 0.021900705,
+  "scale": 0.18262910315580694,
+  "tags": [
+    "bea",
+    "30d",
+    "M"
+  ]
+}

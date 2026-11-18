@@ -1,0 +1,32 @@
+{
+  "id": "oe-2026-04-15-rates.ust.par.2y-90d-number",
+  "question": "What will the 2-year U.S. Treasury par yield (Treasury daily par yield curve) be for 2026-07-14 (or the last business day before it with a published reading)?",
+  "kind": "number",
+  "made_on": "2026-04-15",
+  "deadline": "2026-07-14",
+  "series_id": "rates.ust.par.2y",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "B",
+    "grace_days": 46,
+    "transform": {
+      "kind": "level"
+    }
+  },
+  "source": "Source: U.S. Treasury, Bureau of the Fiscal Service",
+  "license": "Fiscal Data API license (public domain)",
+  "unit": "pct",
+  "split": "resolved_history",
+  "cutoff": "2026-04-14",
+  "anchor": {
+    "timestamp": "2026-04-14",
+    "value": 3.76
+  },
+  "base_change": 0.05,
+  "scale": 0.2599999999999998,
+  "tags": [
+    "us_treasury",
+    "90d",
+    "B"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "oe-2025-01-15-fred_u6_underemployment-90d-direction",
+  "question": "Will the U.S. U-6 underemployment rate (BLS, seasonally adjusted) for April 2025 (the latest monthly reading dated on or before 2025-04-15) be above 7.6%, its value for December 2024?",
+  "kind": "binary",
+  "made_on": "2025-01-15",
+  "deadline": "2025-04-15",
+  "series_id": "fred_u6_underemployment",
+  "rule": {
+    "comparator": ">",
+    "threshold": 7.6,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "the latest reading as of 2025-01-15 (December 2024), rounded as shown"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "%",
+  "split": "resolved_history",
+  "cutoff": "2024-12-01",
+  "anchor": {
+    "timestamp": "2024-12-01",
+    "value": 7.6
+  },
+  "base_rate": 0.25,
+  "base_change": -0.2,
+  "scale": 0.2999999999999998,
+  "tags": [
+    "bls",
+    "90d",
+    "M"
+  ]
+}

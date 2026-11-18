@@ -1,0 +1,15 @@
+{
+  "id": "oe-2024-10-15-fred_unemployment-30d-number",
+  "kind": "number",
+  "status": "resolved",
+  "value": 4.2,
+  "outcome": null,
+  "scale": 0.10000000000000053,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-11-01",
+    "reading_value": 4.2,
+    "value": 4.2
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "oe-2026-07-15-fred_pcepilfe-30d-threshold",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 3.034442462,
+  "outcome": false,
+  "scale": 0.18262910315580694,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-08-01",
+    "reading_value": 130.489,
+    "comparison_timestamp": "2025-08-01",
+    "comparison_value": 126.646,
+    "value": 3.034442462,
+    "outcome": false
+  }
+}

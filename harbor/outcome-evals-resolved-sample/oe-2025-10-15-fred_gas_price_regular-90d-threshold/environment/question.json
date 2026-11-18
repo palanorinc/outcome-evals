@@ -1,0 +1,36 @@
+{
+  "id": "oe-2025-10-15-fred_gas_price_regular-90d-threshold",
+  "question": "Will the U.S. average retail price of regular gasoline (EIA weekly survey, dollars a gallon) for the latest weekly reading dated on or before 2026-01-13 (expected: 2026-01-12) be above $3.300?",
+  "kind": "binary",
+  "made_on": "2025-10-15",
+  "deadline": "2026-01-13",
+  "series_id": "fred_gas_price_regular",
+  "rule": {
+    "comparator": ">",
+    "threshold": 3.3,
+    "pick": "last_on_or_before",
+    "period": "W",
+    "grace_days": 47,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "a round number near the upper quartile of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Energy Information Administration",
+  "license": "EIA Copyrights & Reuse (public domain)",
+  "unit": "$/gal",
+  "split": "resolved_history",
+  "cutoff": "2025-10-13",
+  "anchor": {
+    "timestamp": "2025-10-13",
+    "value": 3.061
+  },
+  "base_rate": 0.2263779527559055,
+  "base_change": 0.0315,
+  "scale": 0.1795,
+  "tags": [
+    "eia",
+    "90d",
+    "W"
+  ]
+}

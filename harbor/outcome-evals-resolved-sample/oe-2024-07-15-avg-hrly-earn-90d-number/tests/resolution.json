@@ -1,0 +1,17 @@
+{
+  "id": "oe-2024-07-15-avg-hrly-earn-90d-number",
+  "kind": "number",
+  "status": "resolved",
+  "value": 4.049295775,
+  "outcome": null,
+  "scale": 0.22138492323904302,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-10-01",
+    "reading_value": 35.46,
+    "comparison_timestamp": "2023-10-01",
+    "comparison_value": 34.08,
+    "value": 4.049295775
+  }
+}

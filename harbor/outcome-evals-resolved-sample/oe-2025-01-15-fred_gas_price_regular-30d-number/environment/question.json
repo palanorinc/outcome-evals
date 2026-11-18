@@ -1,0 +1,32 @@
+{
+  "id": "oe-2025-01-15-fred_gas_price_regular-30d-number",
+  "question": "What will the U.S. average retail price of regular gasoline (EIA weekly survey, dollars a gallon) be for the latest weekly reading dated on or before 2025-02-14 (expected: 2025-02-10)?",
+  "kind": "number",
+  "made_on": "2025-01-15",
+  "deadline": "2025-02-14",
+  "series_id": "fred_gas_price_regular",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "W",
+    "grace_days": 47,
+    "transform": {
+      "kind": "level"
+    }
+  },
+  "source": "Source: U.S. Energy Information Administration",
+  "license": "EIA Copyrights & Reuse (public domain)",
+  "unit": "$/gal",
+  "split": "resolved_history",
+  "cutoff": "2025-01-13",
+  "anchor": {
+    "timestamp": "2025-01-13",
+    "value": 3.043
+  },
+  "base_change": 0.002,
+  "scale": 0.09600000000000009,
+  "tags": [
+    "eia",
+    "30d",
+    "W"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "oe-2025-04-15-rates.ust.par.10y-90d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 4.43,
+  "outcome": true,
+  "scale": 0.27,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-07-14",
+    "reading_value": 4.43,
+    "value": 4.43,
+    "outcome": true
+  }
+}

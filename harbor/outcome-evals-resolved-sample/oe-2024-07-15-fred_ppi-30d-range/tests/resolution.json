@@ -1,0 +1,18 @@
+{
+  "id": "oe-2024-07-15-fred_ppi-30d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": -0.86036945,
+  "outcome": true,
+  "scale": 2.1080805634598576,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-08-01",
+    "reading_value": 255.463,
+    "comparison_timestamp": "2023-08-01",
+    "comparison_value": 257.68,
+    "value": -0.86036945,
+    "outcome": true
+  }
+}

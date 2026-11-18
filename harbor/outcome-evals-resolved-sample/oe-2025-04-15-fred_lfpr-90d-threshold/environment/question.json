@@ -1,0 +1,36 @@
+{
+  "id": "oe-2025-04-15-fred_lfpr-90d-threshold",
+  "question": "Will the U.S. labor force participation rate (BLS, seasonally adjusted) for July 2025 (the latest monthly reading dated on or before 2025-07-14) be below 62.4%?",
+  "kind": "binary",
+  "made_on": "2025-04-15",
+  "deadline": "2025-07-14",
+  "series_id": "fred_lfpr",
+  "rule": {
+    "comparator": "<",
+    "threshold": 62.4,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "a round number near the lower quartile of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "%",
+  "split": "resolved_history",
+  "cutoff": "2025-03-01",
+  "anchor": {
+    "timestamp": "2025-03-01",
+    "value": 62.5
+  },
+  "base_rate": 0.19827586206896552,
+  "base_change": 0.05,
+  "scale": 0.19999999999999574,
+  "tags": [
+    "bls",
+    "90d",
+    "M"
+  ]
+}

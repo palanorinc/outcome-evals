@@ -136,7 +136,7 @@ outcome-evals export-harbor my-dataset                       # resolved question
 harbor run -p harbor/outcome-evals-resolved-sample -a oracle   # the oracle runs the fixed-answer baseline
 ```
 
-Each task asks the agent to write `/app/answer.json`. The grader runs in a separate container. The reward is `1 − Brier` for yes/no and `1 / (1 + |error| / scale)` for numbers. Only resolved questions are exported. A 51-task sample is committed in `harbor/`.
+Each task asks the agent to write `/app/answer.json`. The grader runs in a separate container. The reward is `1 − Brier` for yes/no and `1 / (1 + |error| / scale)` for numbers. Only resolved questions are exported. A 52-task sample is committed in `harbor/`.
 
 **OpenEnv**
 

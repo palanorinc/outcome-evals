@@ -1,0 +1,15 @@
+{
+  "id": "oe-2024-04-15-auto-sales-30d-number",
+  "kind": "number",
+  "status": "resolved",
+  "value": 16.427,
+  "outcome": null,
+  "scale": 0.4269999999999996,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-05-01",
+    "reading_value": 16.427,
+    "value": 16.427
+  }
+}

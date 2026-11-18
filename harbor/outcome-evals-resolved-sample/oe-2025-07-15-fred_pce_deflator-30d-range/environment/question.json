@@ -1,0 +1,38 @@
+{
+  "id": "oe-2025-07-15-fred_pce_deflator-30d-range",
+  "question": "Will the 12-month change in the U.S. PCE price index (BEA, seasonally adjusted; computed from the index) for August 2025 (the latest monthly reading dated on or before 2025-08-14) be at least 2.20% and below 2.80%?",
+  "kind": "binary",
+  "made_on": "2025-07-15",
+  "deadline": "2025-08-14",
+  "series_id": "fred_pce_deflator",
+  "rule": {
+    "comparator": "between",
+    "low": 2.2,
+    "high": 2.8,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 107,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Economic Analysis",
+  "license": "U.S. Government work (public domain)",
+  "unit": "index",
+  "split": "resolved_history",
+  "cutoff": "2025-05-01",
+  "anchor": {
+    "timestamp": "2025-05-01",
+    "value": 2.463341682
+  },
+  "base_rate": 0.48717948717948717,
+  "base_change": 0.054373934,
+  "scale": 0.30133209654623627,
+  "tags": [
+    "bea",
+    "30d",
+    "M"
+  ]
+}

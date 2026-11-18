@@ -1,0 +1,37 @@
+{
+  "id": "oe-2024-07-15-rates.ust.par.3m-90d-range",
+  "question": "Will the 3-month U.S. Treasury par yield (Treasury daily par yield curve) for 2024-10-13 (or the last business day before it with a published reading) be at least 5.40% and below 5.70%?",
+  "kind": "binary",
+  "made_on": "2024-07-15",
+  "deadline": "2024-10-13",
+  "series_id": "rates.ust.par.3m",
+  "rule": {
+    "comparator": "between",
+    "low": 5.4,
+    "high": 5.7,
+    "pick": "last_on_or_before",
+    "period": "B",
+    "grace_days": 46,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Treasury, Bureau of the Fiscal Service",
+  "license": "Fiscal Data API license (public domain)",
+  "unit": "pct",
+  "split": "resolved_history",
+  "cutoff": "2024-07-12",
+  "anchor": {
+    "timestamp": "2024-07-12",
+    "value": 5.43
+  },
+  "base_rate": 0.5588838736151005,
+  "base_change": 0.04,
+  "scale": 0.1299999999999999,
+  "tags": [
+    "us_treasury",
+    "90d",
+    "B"
+  ]
+}

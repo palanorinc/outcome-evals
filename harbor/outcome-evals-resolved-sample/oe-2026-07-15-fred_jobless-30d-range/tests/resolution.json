@@ -1,0 +1,16 @@
+{
+  "id": "oe-2026-07-15-fred_jobless-30d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 212000.0,
+  "outcome": true,
+  "scale": 11500.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-08-08",
+    "reading_value": 212000.0,
+    "value": 212000.0,
+    "outcome": true
+  }
+}

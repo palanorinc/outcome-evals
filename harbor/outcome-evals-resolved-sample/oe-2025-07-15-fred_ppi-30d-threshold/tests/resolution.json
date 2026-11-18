@@ -1,0 +1,18 @@
+{
+  "id": "oe-2025-07-15-fred_ppi-30d-threshold",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 2.601942356,
+  "outcome": false,
+  "scale": 2.094714912586715,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-08-01",
+    "reading_value": 262.11,
+    "comparison_timestamp": "2024-08-01",
+    "comparison_value": 255.463,
+    "value": 2.601942356,
+    "outcome": false
+  }
+}

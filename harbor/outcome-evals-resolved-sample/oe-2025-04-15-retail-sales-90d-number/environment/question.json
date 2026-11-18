@@ -1,0 +1,33 @@
+{
+  "id": "oe-2025-04-15-retail-sales-90d-number",
+  "question": "What will the one-month change in U.S. advance retail and food services sales (Census, seasonally adjusted; computed from the level) be for July 2025 (the latest monthly reading dated on or before 2025-07-14)?",
+  "kind": "number",
+  "made_on": "2025-04-15",
+  "deadline": "2025-07-14",
+  "series_id": "retail-sales",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 92,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "1M"
+    }
+  },
+  "source": "Source: U.S. Census Bureau.",
+  "license": "U.S. Government work (17 U.S.C. \u00a7105)",
+  "unit": "index",
+  "split": "resolved_history",
+  "cutoff": "2025-02-01",
+  "anchor": {
+    "timestamp": "2025-02-01",
+    "value": -0.478271121
+  },
+  "base_change": 0.050810334,
+  "scale": 0.732806427649435,
+  "tags": [
+    "us_census",
+    "90d",
+    "M"
+  ]
+}

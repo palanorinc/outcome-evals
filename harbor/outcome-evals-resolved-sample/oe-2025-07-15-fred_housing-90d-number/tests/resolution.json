@@ -1,0 +1,15 @@
+{
+  "id": "oe-2025-07-15-fred_housing-90d-number",
+  "kind": "number",
+  "status": "resolved",
+  "value": 1273.0,
+  "outcome": null,
+  "scale": 91.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-10-01",
+    "reading_value": 1273.0,
+    "value": 1273.0
+  }
+}

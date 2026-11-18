@@ -1,0 +1,16 @@
+{
+  "id": "oe-2024-07-15-rates.ust.par.3m-90d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 4.73,
+  "outcome": false,
+  "scale": 0.1299999999999999,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-10-11",
+    "reading_value": 4.73,
+    "value": 4.73,
+    "outcome": false
+  }
+}

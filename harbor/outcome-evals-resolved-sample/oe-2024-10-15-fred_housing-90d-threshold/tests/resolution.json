@@ -1,0 +1,16 @@
+{
+  "id": "oe-2024-10-15-fred_housing-90d-threshold",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 1353.0,
+  "outcome": false,
+  "scale": 95.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-01-01",
+    "reading_value": 1353.0,
+    "value": 1353.0,
+    "outcome": false
+  }
+}

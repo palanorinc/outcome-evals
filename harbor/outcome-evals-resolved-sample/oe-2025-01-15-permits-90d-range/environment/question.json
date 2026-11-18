@@ -1,0 +1,37 @@
+{
+  "id": "oe-2025-01-15-permits-90d-range",
+  "question": "Will U.S. building permits for new private housing units (Census, seasonally adjusted annual rate, thousands) for April 2025 (the latest monthly reading dated on or before 2025-04-15) be at least 1,450 thousand and below 1,600 thousand?",
+  "kind": "binary",
+  "made_on": "2025-01-15",
+  "deadline": "2025-04-15",
+  "series_id": "permits",
+  "rule": {
+    "comparator": "between",
+    "low": 1450.0,
+    "high": 1600.0,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 95,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Census Bureau.",
+  "license": "U.S. Government work (17 U.S.C. \u00a7105)",
+  "unit": "count",
+  "split": "resolved_history",
+  "cutoff": "2024-11-01",
+  "anchor": {
+    "timestamp": "2024-11-01",
+    "value": 1512.0
+  },
+  "base_rate": 0.5478260869565217,
+  "base_change": 21.0,
+  "scale": 64.0,
+  "tags": [
+    "us_census",
+    "90d",
+    "M"
+  ]
+}

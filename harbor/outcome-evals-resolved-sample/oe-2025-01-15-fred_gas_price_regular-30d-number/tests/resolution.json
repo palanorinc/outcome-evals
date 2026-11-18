@@ -1,0 +1,15 @@
+{
+  "id": "oe-2025-01-15-fred_gas_price_regular-30d-number",
+  "kind": "number",
+  "status": "resolved",
+  "value": 3.128,
+  "outcome": null,
+  "scale": 0.09600000000000009,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-02-10",
+    "reading_value": 3.128,
+    "value": 3.128
+  }
+}

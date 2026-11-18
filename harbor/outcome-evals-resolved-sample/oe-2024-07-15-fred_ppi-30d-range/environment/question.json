@@ -1,0 +1,38 @@
+{
+  "id": "oe-2024-07-15-fred_ppi-30d-range",
+  "question": "Will the 12-month change in the U.S. Producer Price Index for all commodities (not seasonally adjusted; computed from the index) for August 2024 (the latest monthly reading dated on or before 2024-08-14) be at least -1.25% and below 2.75%?",
+  "kind": "binary",
+  "made_on": "2024-07-15",
+  "deadline": "2024-08-14",
+  "series_id": "fred_ppi",
+  "rule": {
+    "comparator": "between",
+    "low": -1.25,
+    "high": 2.75,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 91,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "index",
+  "split": "resolved_history",
+  "cutoff": "2024-05-01",
+  "anchor": {
+    "timestamp": "2024-05-01",
+    "value": 0.647691883
+  },
+  "base_rate": 0.4700854700854701,
+  "base_change": 0.29228517,
+  "scale": 2.1080805634598576,
+  "tags": [
+    "bls",
+    "30d",
+    "M"
+  ]
+}

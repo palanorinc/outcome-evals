@@ -1,0 +1,37 @@
+{
+  "id": "oe-2026-04-15-avg-hrly-earn-30d-direction",
+  "question": "Will the 12-month change in U.S. average hourly earnings of all private employees (BLS, seasonally adjusted; computed from the level) for May 2026 (the latest monthly reading dated on or before 2026-05-15) be above 3.43%, its value for March 2026?",
+  "kind": "binary",
+  "made_on": "2026-04-15",
+  "deadline": "2026-05-15",
+  "series_id": "avg-hrly-earn",
+  "rule": {
+    "comparator": ">",
+    "threshold": 3.43,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "the latest reading as of 2026-04-15 (March 2026), rounded as shown"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "$ per hour",
+  "split": "resolved_history",
+  "cutoff": "2026-03-01",
+  "anchor": {
+    "timestamp": "2026-03-01",
+    "value": 3.433951814
+  },
+  "base_rate": 0.4745762711864407,
+  "base_change": -0.033503477,
+  "scale": 0.2060454692601521,
+  "tags": [
+    "bls",
+    "30d",
+    "M"
+  ]
+}

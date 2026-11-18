@@ -1,0 +1,33 @@
+{
+  "id": "oe-2024-07-15-avg-hrly-earn-90d-number",
+  "question": "What will the 12-month change in U.S. average hourly earnings of all private employees (BLS, seasonally adjusted; computed from the level) be for October 2024 (the latest monthly reading dated on or before 2024-10-13)?",
+  "kind": "number",
+  "made_on": "2024-07-15",
+  "deadline": "2024-10-13",
+  "series_id": "avg-hrly-earn",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    }
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "$ per hour",
+  "split": "resolved_history",
+  "cutoff": "2024-06-01",
+  "anchor": {
+    "timestamp": "2024-06-01",
+    "value": 3.918076581
+  },
+  "base_change": -0.002985109,
+  "scale": 0.22138492323904302,
+  "tags": [
+    "bls",
+    "90d",
+    "M"
+  ]
+}

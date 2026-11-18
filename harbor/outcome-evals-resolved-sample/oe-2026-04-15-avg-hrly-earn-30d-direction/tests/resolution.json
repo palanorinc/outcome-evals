@@ -1,0 +1,18 @@
+{
+  "id": "oe-2026-04-15-avg-hrly-earn-30d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 3.335170893,
+  "outcome": false,
+  "scale": 0.2060454692601521,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-05-01",
+    "reading_value": 37.49,
+    "comparison_timestamp": "2025-05-01",
+    "comparison_value": 36.28,
+    "value": 3.335170893,
+    "outcome": false
+  }
+}

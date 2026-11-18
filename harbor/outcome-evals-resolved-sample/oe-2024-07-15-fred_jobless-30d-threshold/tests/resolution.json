@@ -1,0 +1,16 @@
+{
+  "id": "oe-2024-07-15-fred_jobless-30d-threshold",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 228000.0,
+  "outcome": false,
+  "scale": 11000.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-08-10",
+    "reading_value": 228000.0,
+    "value": 228000.0,
+    "outcome": false
+  }
+}

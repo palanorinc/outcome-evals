@@ -1,0 +1,16 @@
+{
+  "id": "oe-2024-04-15-rates.ust.par.2y-90d-threshold",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 4.45,
+  "outcome": false,
+  "scale": 0.18999999999999995,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-07-12",
+    "reading_value": 4.45,
+    "value": 4.45,
+    "outcome": false
+  }
+}

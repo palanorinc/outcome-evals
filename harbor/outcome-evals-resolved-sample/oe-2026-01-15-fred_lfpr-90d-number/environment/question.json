@@ -1,0 +1,32 @@
+{
+  "id": "oe-2026-01-15-fred_lfpr-90d-number",
+  "question": "What will the U.S. labor force participation rate (BLS, seasonally adjusted) be for April 2026 (the latest monthly reading dated on or before 2026-04-15)?",
+  "kind": "number",
+  "made_on": "2026-01-15",
+  "deadline": "2026-04-15",
+  "series_id": "fred_lfpr",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "level"
+    }
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "%",
+  "split": "resolved_history",
+  "cutoff": "2025-12-01",
+  "anchor": {
+    "timestamp": "2025-12-01",
+    "value": 62.4
+  },
+  "base_change": 0.1,
+  "scale": 0.19999999999999574,
+  "tags": [
+    "bls",
+    "90d",
+    "M"
+  ]
+}

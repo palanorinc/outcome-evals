@@ -1,0 +1,36 @@
+{
+  "id": "oe-2024-04-15-rates.ust.par.2y-90d-threshold",
+  "question": "Will the 2-year U.S. Treasury par yield (Treasury daily par yield curve) for 2024-07-14 (or the last business day before it with a published reading) be above 5.15%?",
+  "kind": "binary",
+  "made_on": "2024-04-15",
+  "deadline": "2024-07-14",
+  "series_id": "rates.ust.par.2y",
+  "rule": {
+    "comparator": ">",
+    "threshold": 5.15,
+    "pick": "last_on_or_before",
+    "period": "B",
+    "grace_days": 46,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "a round number near the upper quartile of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Treasury, Bureau of the Fiscal Service",
+  "license": "Fiscal Data API license (public domain)",
+  "unit": "pct",
+  "split": "resolved_history",
+  "cutoff": "2024-04-12",
+  "anchor": {
+    "timestamp": "2024-04-12",
+    "value": 4.88
+  },
+  "base_rate": 0.2601559294214198,
+  "base_change": 0.07,
+  "scale": 0.18999999999999995,
+  "tags": [
+    "us_treasury",
+    "90d",
+    "B"
+  ]
+}

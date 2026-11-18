@@ -1,0 +1,18 @@
+{
+  "id": "oe-2024-10-15-fred_pce_deflator-30d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 2.491038837,
+  "outcome": true,
+  "scale": 0.3395467171851019,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-11-01",
+    "reading_value": 124.666,
+    "comparison_timestamp": "2023-11-01",
+    "comparison_value": 121.636,
+    "value": 2.491038837,
+    "outcome": true
+  }
+}

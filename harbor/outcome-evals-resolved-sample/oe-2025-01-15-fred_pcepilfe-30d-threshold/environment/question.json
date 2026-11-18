@@ -1,0 +1,37 @@
+{
+  "id": "oe-2025-01-15-fred_pcepilfe-30d-threshold",
+  "question": "Will the 12-month change in the U.S. core PCE price index, excluding food and energy (BEA, seasonally adjusted; computed from the index) for February 2025 (the latest monthly reading dated on or before 2025-02-14) be below 2.70%?",
+  "kind": "binary",
+  "made_on": "2025-01-15",
+  "deadline": "2025-02-14",
+  "series_id": "fred_pcepilfe",
+  "rule": {
+    "comparator": "<",
+    "threshold": 2.7,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 107,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "a round number near the lower quartile of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Economic Analysis",
+  "license": "U.S. Government work (public domain)",
+  "unit": "index (2017=100)",
+  "split": "resolved_history",
+  "cutoff": "2024-11-01",
+  "anchor": {
+    "timestamp": "2024-11-01",
+    "value": 2.874092512
+  },
+  "base_rate": 0.24786324786324787,
+  "base_change": 0.002340464,
+  "scale": 0.16763460896969118,
+  "tags": [
+    "bea",
+    "30d",
+    "M"
+  ]
+}

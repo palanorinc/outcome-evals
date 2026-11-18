@@ -1,0 +1,32 @@
+{
+  "id": "oe-2024-10-15-fred_unemployment-30d-number",
+  "question": "What will the U.S. unemployment rate (BLS, seasonally adjusted) be for November 2024 (the latest monthly reading dated on or before 2024-11-14)?",
+  "kind": "number",
+  "made_on": "2024-10-15",
+  "deadline": "2024-11-14",
+  "series_id": "fred_unemployment",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "level"
+    }
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "%",
+  "split": "resolved_history",
+  "cutoff": "2024-09-01",
+  "anchor": {
+    "timestamp": "2024-09-01",
+    "value": 4.1
+  },
+  "base_change": -0.1,
+  "scale": 0.10000000000000053,
+  "tags": [
+    "bls",
+    "30d",
+    "M"
+  ]
+}

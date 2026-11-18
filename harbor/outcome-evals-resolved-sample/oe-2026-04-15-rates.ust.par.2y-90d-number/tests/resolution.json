@@ -1,0 +1,15 @@
+{
+  "id": "oe-2026-04-15-rates.ust.par.2y-90d-number",
+  "kind": "number",
+  "status": "resolved",
+  "value": 4.18,
+  "outcome": null,
+  "scale": 0.2599999999999998,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-07-14",
+    "reading_value": 4.18,
+    "value": 4.18
+  }
+}

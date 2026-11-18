@@ -1,0 +1,37 @@
+schema_version = "1.4"
+# the answer is copied from the agent's container into the separate verifier at the same path
+artifacts = ["/app/answer.json"]
+
+[task]
+name = "palanor/oe-2025-04-15-retail-sales-90d-number"
+version = "0.1.0"
+description = "What will the one-month change in U.S. advance retail and food services sales (Census, seasonally adjusted; computed from the level) be for July 2025 (the latest monthly reading dated on or before 2025-07-14)?"
+keywords = ["forecasting", "outcome-evals", "retail-sales", "number"]
+
+[[task.authors]]
+name = "Palanor"
+email = "opensource@palanor.com"
+
+[metadata]
+eval = "Outcome Evals"
+split = "resolved_history"
+series_id = "retail-sales"
+kind = "number"
+made_on = "2025-04-15"
+deadline = "2025-07-14"
+source = "Source: U.S. Census Bureau."
+license = "U.S. Government work (17 U.S.C. §105)"
+caveat = "Resolved history: not a test of forecasting for any model trained after the outcome."
+
+[verifier]
+timeout_sec = 120.0
+# the grader runs in its own container: the agent never sees tests/ or the resolution
+environment_mode = "separate"
+
+[agent]
+timeout_sec = 900.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 1024

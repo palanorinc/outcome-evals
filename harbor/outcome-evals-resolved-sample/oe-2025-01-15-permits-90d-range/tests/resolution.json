@@ -1,0 +1,16 @@
+{
+  "id": "oe-2025-01-15-permits-90d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 1445.0,
+  "outcome": false,
+  "scale": 64.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-04-01",
+    "reading_value": 1445.0,
+    "value": 1445.0,
+    "outcome": false
+  }
+}

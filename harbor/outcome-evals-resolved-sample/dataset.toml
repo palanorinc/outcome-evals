@@ -9,206 +9,210 @@ email = "opensource@palanor.com"
 
 
 [[tasks]]
-name = "palanor/oe-2024-01-15-construction-30d-range"
-digest = "sha256:85a9b135cb0503b5e2c2ddd4dc9eda5e45a51fa60ce70c777714fceb7177c7e6"
-
-[[tasks]]
 name = "palanor/oe-2024-01-15-fred_cpi-30d-direction"
 digest = "sha256:80a30eb073f881d46417866249d2325131404eb1e602c4542870ee5d44f4a878"
 
 [[tasks]]
-name = "palanor/oe-2024-01-15-fred_lfpr-90d-range"
-digest = "sha256:026e82890e0ba292748247590349eea7d3cc5a1645ce79bee66db0f723c130ba"
+name = "palanor/oe-2024-01-15-fred_lfpr-90d-threshold"
+digest = "sha256:a8998afd131bb44c1e84b508b20d1113f5c616d4c0d396510f91289a85df002b"
 
 [[tasks]]
-name = "palanor/oe-2024-01-15-fred_savings_rate-90d-direction"
-digest = "sha256:22e763f38cb2c4288913ad4cf6bc97ed2f56a30e0427adef306a5c31b7b7afff"
+name = "palanor/oe-2024-01-15-fred_savings_rate-30d-range"
+digest = "sha256:403320719ed26fe91572a833ff3ad51d14668b301eb4d27ab21728b9a2099b2d"
 
 [[tasks]]
-name = "palanor/oe-2024-01-15-rates.ust.par.2y-30d-direction"
-digest = "sha256:6de61d4ae96dbacf89362f5eff349399478e8ee756014ad40e9ff48cbe0afaf1"
+name = "palanor/oe-2024-01-15-rates.ust.par.10y-90d-direction"
+digest = "sha256:0b866c2a71676212cc0c13e3d17312d812920504fd3fa735302fdf4e8597d451"
 
 [[tasks]]
-name = "palanor/oe-2024-04-15-avg-hrly-earn-90d-direction"
-digest = "sha256:f8b0a49283052db50df081b77578efdd2a316fce3fd1d6f04040a3d54a5cda14"
+name = "palanor/oe-2024-01-15-retail-sales-90d-number"
+digest = "sha256:26bcddc8b672b17c37f27729b50626ad4d16d1382142786d0ae233bc28fc5298"
 
 [[tasks]]
-name = "palanor/oe-2024-04-15-fred_core_cpi-90d-range"
-digest = "sha256:3e104e01a153e623513c81e28ead7ba1fb59f3e8faf1ce8f5a30ea88fcf4a96f"
+name = "palanor/oe-2024-04-15-auto-sales-30d-number"
+digest = "sha256:e5630ab64b603c3f6969f7e0546d6e18e5af9e33a8f30e09ca07c0c9a1c3d3fb"
 
 [[tasks]]
-name = "palanor/oe-2024-04-15-fred_gdp-30d-range"
-digest = "sha256:886858957f718b665542328d05341d2d84098908c04b6301812fb8a6251142d3"
+name = "palanor/oe-2024-04-15-fred_core_cpi-30d-threshold"
+digest = "sha256:ca4358cdbece6865349309adcf8a561945cb8bb4a0604f4e38be64f54f2f123a"
 
 [[tasks]]
-name = "palanor/oe-2024-04-15-fred_jobless-30d-direction"
-digest = "sha256:b04674af656ea7ea2199aefa1dd7627792ee9941431354b1c4c10060562580f8"
+name = "palanor/oe-2024-04-15-fred_durable_goods_new_orders-30d-direction"
+digest = "sha256:5bbaedc95fd593270ee2dd50afee7f493e6cf0c64279d18b9c0015a9a8e39736"
 
 [[tasks]]
-name = "palanor/oe-2024-04-15-rates.ust.par.3m-90d-range"
-digest = "sha256:f0b4867a6316bce5d23d2e951906c430d2d9fcddc613337c42c9d4ade3695f95"
+name = "palanor/oe-2024-04-15-fred_nfp-90d-range"
+digest = "sha256:c42bef94026068a507017c72ae54c9dd2a8e3a91a9f66959f202c35f05acd876"
 
 [[tasks]]
-name = "palanor/oe-2024-07-15-continued-claims-90d-range"
-digest = "sha256:a7a1f9ec1c81850280378e081f9ab07e12870df65ed78c5802e86a9e7d20b9dc"
+name = "palanor/oe-2024-04-15-rates.ust.par.2y-90d-threshold"
+digest = "sha256:82c36bca0852433a0c8b50a1583b9d5273660866d599630dc282cd13ebdedecd"
 
 [[tasks]]
-name = "palanor/oe-2024-07-15-fred_pce_deflator-30d-range"
-digest = "sha256:e1f4e1be3bfabd01a5be1969cbb52dc0c04f5d060e2a71433d4d4d90d76b5275"
+name = "palanor/oe-2024-07-15-avg-hrly-earn-90d-number"
+digest = "sha256:3a032ed3d9a8e6a223ecbddf943f7e7d650f87048840f4982c57a43652bf62ca"
 
 [[tasks]]
-name = "palanor/oe-2024-07-15-fred_unemployment-90d-direction"
-digest = "sha256:dd53611a6c38c2200cf9e4e3f36f7f6db371b5f3e0c793c69fd262d5fe72c800"
+name = "palanor/oe-2024-07-15-fred_gdp-90d-direction"
+digest = "sha256:496a6e63f02b800fa1cd13883a5d8d2108f1f63341ac262bbbc1c8ba704ede2b"
 
 [[tasks]]
-name = "palanor/oe-2024-07-15-permits-30d-direction"
-digest = "sha256:d2ec8aaa44d706f6ae08e98aaba80c60045321b8fa2a99dabbc41d4ebd53273f"
+name = "palanor/oe-2024-07-15-fred_jobless-30d-threshold"
+digest = "sha256:339ef3a87c083aa3eefa7d6bcf11ecc2e333b8bb924566f9d5bc4cc5701388f7"
 
 [[tasks]]
-name = "palanor/oe-2024-07-15-rates.spread_3m10y-90d-direction"
-digest = "sha256:2fb140d2e7b619ff809e4b049acf35cb904010cc9bca3a14edddec3ff07ee625"
+name = "palanor/oe-2024-07-15-fred_ppi-30d-range"
+digest = "sha256:57172b1e9c0df748604d0448ea5baed4adf14e40d979bb909b3aeba2c3b165fc"
 
 [[tasks]]
-name = "palanor/oe-2024-10-15-fred_lfpr-30d-range"
-digest = "sha256:cacad22fc2497d939803671fe549fc0bd0940e52bae0d7d9a8d60fd3c621f8e5"
+name = "palanor/oe-2024-07-15-rates.ust.par.3m-90d-range"
+digest = "sha256:f72ba49f037761e122cda4f542cdc74b8b7603e61270cba7c180ae1566a063ba"
 
 [[tasks]]
-name = "palanor/oe-2024-10-15-fred_savings_rate-30d-direction"
-digest = "sha256:138a3915224a45472852e7375b3e52014d7da96cfe3a8eb52a10ed49d8e4f666"
+name = "palanor/oe-2024-10-15-continued-claims-30d-range"
+digest = "sha256:8748998fb7524f987a3bbdc43ff94032756a5f9aede47d824e0982b1b491cf39"
 
 [[tasks]]
-name = "palanor/oe-2024-10-15-rates.ust.par.10y-90d-direction"
-digest = "sha256:b1eb93394e86ab1123df0fb63bc1eef2babceca9f5137b9ce2004dcfa5f5c33c"
+name = "palanor/oe-2024-10-15-fred_housing-90d-threshold"
+digest = "sha256:8ba4e516bef8e8106635dd198956f0e0018f9c3ad825c55bb7805d02a0989505"
 
 [[tasks]]
-name = "palanor/oe-2024-10-15-retail-sales-90d-range"
-digest = "sha256:021da5aac9b6361a329a4a82f218c0f6800235e090c81c95d3dbdf2e0b368aca"
+name = "palanor/oe-2024-10-15-fred_pce_deflator-30d-direction"
+digest = "sha256:839f8ec4dd377ca7402aaa330c96240fc2dd55b608555cb2e16505222854ece3"
 
 [[tasks]]
-name = "palanor/oe-2025-01-15-auto-sales-90d-range"
-digest = "sha256:3e37cb44134c0e215732ab21676ddaeb06c0178a0f36c5beb3263d764e9c14b4"
+name = "palanor/oe-2024-10-15-fred_unemployment-30d-number"
+digest = "sha256:bf9ed9501a09877285aca5c55788f2697423f8c337d717329c44e965488c1ab7"
 
 [[tasks]]
-name = "palanor/oe-2025-01-15-avg-hrly-earn-30d-direction"
-digest = "sha256:4c57c6eacbba064c08c0a99873f691c5040689d4cf4e0a46420ef48b3b33fbc7"
+name = "palanor/oe-2024-10-15-rates.spread_2y10y-90d-number"
+digest = "sha256:dfea3e43cc280c21de691c5c8c20687f2334cd32d74f0724b9334a8c41330609"
 
 [[tasks]]
-name = "palanor/oe-2025-01-15-fred_core_cpi-30d-range"
-digest = "sha256:1fc79da239436aa56b2fdf21ae0552641dfacac4b2394cc68c48488a07211949"
+name = "palanor/oe-2025-01-15-fred_gas_price_regular-30d-number"
+digest = "sha256:0830731c70cd6202d414e6f3ce65f77364474b03ba09cb116082aa51d01adf17"
 
 [[tasks]]
-name = "palanor/oe-2025-01-15-fred_durable_goods_new_orders-90d-direction"
-digest = "sha256:8569b6a55e0e52cd345f7b31dc079f7adadd391dbae6092285cbd04322f26185"
+name = "palanor/oe-2025-01-15-fred_pcepilfe-30d-threshold"
+digest = "sha256:114cbb036ade69dbd8171319abe91123950c1a44fa4d4b91d52c8eafc07c2ef9"
 
 [[tasks]]
-name = "palanor/oe-2025-01-15-rates.ust.par.3m-30d-range"
-digest = "sha256:9737a240aac1bc31a1e58ba5d8df4fa2cc11c9acefa48f99ff4b601464bc1e3c"
+name = "palanor/oe-2025-01-15-fred_u6_underemployment-90d-direction"
+digest = "sha256:62e306be360a08e179b771a8c4f26166a528019a813e8fcbee62d605b2c69b23"
 
 [[tasks]]
-name = "palanor/oe-2025-04-15-continued-claims-30d-range"
-digest = "sha256:96d9e2fb6eda7071e3e5bbfb0528314199d04f20f53e121bda8a5d4492807716"
+name = "palanor/oe-2025-01-15-permits-90d-range"
+digest = "sha256:3475b9097324c2e47c5b8f54b0dfc2053df321206a24610aad3c4be13568df44"
 
 [[tasks]]
-name = "palanor/oe-2025-04-15-fred_housing-90d-direction"
-digest = "sha256:ea27128846db213fdcbd74730340bdb1a08bf1d6949ad144a0b90a9769992e10"
+name = "palanor/oe-2025-04-15-fred_cpi-30d-direction"
+digest = "sha256:d4b4bcc16bc299d2060bda06c2f9a77eb6bbc5dd353867dfa5a6214ac8b3f2ad"
 
 [[tasks]]
-name = "palanor/oe-2025-04-15-fred_jolts-90d-range"
-digest = "sha256:0956ba11e736a4bfb35fa99e3d0ed31907690310e8e049dfdc55b2b14a9b4043"
+name = "palanor/oe-2025-04-15-fred_lfpr-90d-threshold"
+digest = "sha256:1543b539697e59f676a53d7da5e4bc138aa6833f4a49bb15854e6aad29e48693"
 
 [[tasks]]
-name = "palanor/oe-2025-04-15-fred_unemployment-30d-direction"
-digest = "sha256:bf9dc43393048e14a695a8df65a03fd29b67f992e8042a1f84e5b902409e058b"
+name = "palanor/oe-2025-04-15-fred_savings_rate-30d-range"
+digest = "sha256:9dabd348458e4a0bd9e0bf49a4b0afdea0f2dfcaebedf64441fa6fd0a51c94fd"
 
 [[tasks]]
-name = "palanor/oe-2025-04-15-rates.spread_3m10y-30d-direction"
-digest = "sha256:1642ec5649b1012a31ffc319e59a5be8ece69826dcfca81c6f4d3df3c647bb14"
+name = "palanor/oe-2025-04-15-rates.ust.par.10y-90d-direction"
+digest = "sha256:e206b6fb92c87be1fdbf7bb6ed10c2ae41c7fd02c6ef722807d99390f7372dd3"
 
 [[tasks]]
-name = "palanor/oe-2025-07-15-avg-hrly-earn-30d-range"
-digest = "sha256:731a66e6827826bd69019d8f1c290fa271fc703ebdd46de936df3ef504a2f328"
+name = "palanor/oe-2025-04-15-retail-sales-90d-number"
+digest = "sha256:2f18d3708681528301cb8e0a573c8dcedd1cd2e4d7f9194135dcb8574dfe2644"
 
 [[tasks]]
-name = "palanor/oe-2025-07-15-fred_durable_goods_new_orders-90d-range"
-digest = "sha256:0f9970962a46affc176af49bd04c74607244ea4c18817e4a66c6355407afeab5"
+name = "palanor/oe-2025-07-15-continued-claims-90d-direction"
+digest = "sha256:85bab02314441ac37cf5255e671864bade292936050561437e0c0763020a621d"
 
 [[tasks]]
-name = "palanor/oe-2025-07-15-fred_gdp-30d-direction"
-digest = "sha256:676b5a7f2b58c792b0de3bb6d27daaaa04d595ed33b0e6a7060e14a1757581da"
+name = "palanor/oe-2025-07-15-fred_housing-90d-number"
+digest = "sha256:8bc3d85c5e19a3d0c0b2bf1df58ed7846fd1fe67c8785b5ba2f3e054a1202198"
 
 [[tasks]]
-name = "palanor/oe-2025-07-15-rates.ust.par.3m-90d-direction"
-digest = "sha256:84dbe72adca17c3e61fa0a2a853a55f42235aeb556c5cda9d77ae5d00d73e472"
+name = "palanor/oe-2025-07-15-fred_pce_deflator-30d-range"
+digest = "sha256:7ebc795931281dd948c0bdf20e4ab009a182bba9308662a0d5217d9600f1f294"
 
 [[tasks]]
-name = "palanor/oe-2025-10-15-continued-claims-90d-direction"
-digest = "sha256:12f4eeb5a601567bf4a2163b59ae4bf07af20dce842b9fd4368f4ff8db60652f"
+name = "palanor/oe-2025-07-15-fred_ppi-30d-threshold"
+digest = "sha256:50971f82aa8182453d0eb3fa823a37d599d029c09b79949c2729d6faa97b8d42"
 
 [[tasks]]
-name = "palanor/oe-2025-10-15-fred_housing-90d-range"
-digest = "sha256:8b5565bd3e32e0aec87199ef28cf91e1c6476810ed788b0f87917fa49767c8d2"
+name = "palanor/oe-2025-07-15-rates.spread_3m10y-30d-threshold"
+digest = "sha256:b13c52859ba3100eb49df48ee430c1646f76c35c11bd127698943a6b21e89f26"
 
 [[tasks]]
-name = "palanor/oe-2025-10-15-fred_pce_deflator-30d-direction"
-digest = "sha256:3ca7585a8df5ae9b6fc09bc200af488dcb19799c88ac7c1aafc7bf6371bb6e5a"
+name = "palanor/oe-2025-10-15-fred_gas_price_regular-90d-threshold"
+digest = "sha256:578c3b6f77539472e93ecdb1aa87067efcac5b13ff241a5d72818b1e3894e652"
 
 [[tasks]]
-name = "palanor/oe-2025-10-15-fred_unemployment-30d-range"
-digest = "sha256:7ce74caf5566f66f07d017e4b31b50e4e6961e075c7e99c7862c5e7dbaeb546f"
+name = "palanor/oe-2025-10-15-fred_pcepilfe-30d-number"
+digest = "sha256:32d76cb20044d9e6b2adfe70c8d724918b439cde5f6b53ecb2e6028b96c2be9d"
 
 [[tasks]]
-name = "palanor/oe-2025-10-15-rates.spread_3m10y-30d-range"
-digest = "sha256:e7a0c1ebdd31bf7a83028c86c419036046ef742f86bc8b4118f72321d466d6ed"
+name = "palanor/oe-2025-10-15-fred_u6_underemployment-90d-range"
+digest = "sha256:845cf5c4057f973f183c886dd68b68c93834fc30bd7d289c2bd9f90901fb872f"
 
 [[tasks]]
-name = "palanor/oe-2026-01-15-fred_lfpr-30d-direction"
-digest = "sha256:1eb3ce3e37c4d1aabd6bd3434e1ae296bc69d24502b5f7f521f73834e24d3c2b"
+name = "palanor/oe-2025-10-15-retail-sales-30d-direction"
+digest = "sha256:cd647ea0c4f33d26398e6d88f262c5ea13185797d6b7c5eeb0d547835ebbc4cc"
 
 [[tasks]]
-name = "palanor/oe-2026-01-15-fred_pcepilfe-90d-range"
-digest = "sha256:43f2c494b0352ac2759503d6629ad394ef35e276444b13eb8a94a715a2d3a329"
+name = "palanor/oe-2026-01-15-construction-30d-threshold"
+digest = "sha256:1b5d5e7b4c440606e0e1c777d5f1248cba28240e43d0d39eef27bc203230c15f"
 
 [[tasks]]
-name = "palanor/oe-2026-01-15-rates.ust.par.10y-30d-range"
-digest = "sha256:69822f64f1e131e80837df6cfafcf5ba5f3a48d4f74417c48a40213c0fc6d7e8"
+name = "palanor/oe-2026-01-15-fred_cpi-30d-range"
+digest = "sha256:05e1478d543585c499e3653267d5019c99d0cdcdc1e567ccd4e7ec81e1716338"
 
 [[tasks]]
-name = "palanor/oe-2026-01-15-retail-sales-90d-direction"
-digest = "sha256:434b0c2cf7dc051bf0b8adbcea571a499735ed15f780ecc8f32fc8a5678f2a2f"
+name = "palanor/oe-2026-01-15-fred_lfpr-90d-number"
+digest = "sha256:be15b6fcca858010117fff64452784d491ad61213b79ca56f0d33d3d5c302773"
 
 [[tasks]]
-name = "palanor/oe-2026-04-15-auto-sales-90d-direction"
-digest = "sha256:8374b0ab20d16a8d23ac6f2b9f4764c86283022e7ac27c7d40bbbec557c84c07"
+name = "palanor/oe-2026-01-15-fred_savings_rate-90d-direction"
+digest = "sha256:97ff96fc152f0e6f1ed70f17263e56d30bc755fe5955ecd608583bcbeab1ee12"
 
 [[tasks]]
-name = "palanor/oe-2026-04-15-fred_core_cpi-30d-direction"
-digest = "sha256:9e2025de914c873815098a89e15ed1e87b0c56574f36234046167d7e669be554"
+name = "palanor/oe-2026-01-15-rates.ust.par.10y-90d-range"
+digest = "sha256:ad0071c6c456074f454a5cef240cd7a3311fd2d35710556787b279ffdc17577a"
+
+[[tasks]]
+name = "palanor/oe-2026-04-15-auto-sales-90d-threshold"
+digest = "sha256:bd640af3a5b420db8f260cad7063f811a8354996802aae4a6b524161b31c72b8"
+
+[[tasks]]
+name = "palanor/oe-2026-04-15-avg-hrly-earn-30d-direction"
+digest = "sha256:19ac96b8f7bb5ce839b2f902abbdcfafe7ad7ca4b0c68115c832a416cbcec0bc"
+
+[[tasks]]
+name = "palanor/oe-2026-04-15-fred_core_cpi-30d-number"
+digest = "sha256:c4b8acccce68f43e111d71042ff0516e9a864e97171ed6d5f5a743e4eeff3590"
 
 [[tasks]]
 name = "palanor/oe-2026-04-15-fred_durable_goods_new_orders-30d-range"
 digest = "sha256:5dc9d54a7158ed10b8ff4db9d3069b9cdedbf3473510515839d07f2f951b0236"
 
 [[tasks]]
-name = "palanor/oe-2026-04-15-fred_nfp-90d-range"
-digest = "sha256:74f15f60c62a4995a88e76558a5fa701828dfb5a9aebd85370202cbd7978d354"
+name = "palanor/oe-2026-04-15-rates.ust.par.2y-90d-number"
+digest = "sha256:3c5106f9eabaaea3ecd008a61d51ad7df6cff1794356f6cac2250d718fb10399"
 
 [[tasks]]
-name = "palanor/oe-2026-04-15-rates.ust.par.3m-30d-direction"
-digest = "sha256:fd66092fcf6a50e42d00b5c91781e87e5aa0ad7e00a89c744f75cfeb17b2703c"
+name = "palanor/oe-2026-07-15-fred_jobless-30d-range"
+digest = "sha256:84bd2192a47eab9c222d291622116a18695942d62d4391628155ecbac48ad048"
 
 [[tasks]]
-name = "palanor/oe-2026-07-15-fred_jobless-90d-range"
-digest = "sha256:2a642c2e8585bec5405c32f83a3b714d75e7b3f96eb80b27679c790bc419395c"
+name = "palanor/oe-2026-07-15-fred_pcepilfe-30d-threshold"
+digest = "sha256:ad8f2ba009a69a27094aacc34b5611826be7f706bc0259dce5d4ce0422362245"
 
 [[tasks]]
-name = "palanor/oe-2026-07-15-fred_savings_rate-30d-direction"
-digest = "sha256:f21ce26997b24a48989b5b1f1f433fde6a808bb59d540ee65bbfcf733c5490b3"
+name = "palanor/oe-2026-07-15-fred_unemployment-90d-direction"
+digest = "sha256:e287c1641a2124f3eb4a90f1c4006efe330c32ac09ba02f22a966ea62bd2a89a"
 
 [[tasks]]
-name = "palanor/oe-2026-07-15-fred_unemployment-90d-range"
-digest = "sha256:4beb9cf5a87ac2ab981afba4118b521293d8878391466e310ca2f575a3d2a714"
-
-[[tasks]]
-name = "palanor/oe-2026-07-15-rates.spread_2y10y-90d-direction"
-digest = "sha256:91388318696dbcddb6ea676577d959e2a825c28a7238b0ab9712d44a1a7a8edf"
+name = "palanor/oe-2026-07-15-rates.ust.par.3m-90d-number"
+digest = "sha256:66063eb535c8b22c737cf45a5c2d84ed39a7a90c3bcde28d2104c6004a1be376"
 

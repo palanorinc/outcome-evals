@@ -1,0 +1,38 @@
+{
+  "id": "oe-2026-01-15-fred_cpi-30d-range",
+  "question": "Will the 12-month change in the U.S. Consumer Price Index (CPI-U, all items, seasonally adjusted; computed from the index) for February 2026 (the latest monthly reading dated on or before 2026-02-14) be at least 2.30% and below 3.00%?",
+  "kind": "binary",
+  "made_on": "2026-01-15",
+  "deadline": "2026-02-14",
+  "series_id": "fred_cpi",
+  "rule": {
+    "comparator": "between",
+    "low": 2.3,
+    "high": 3.0,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 90,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "index",
+  "split": "resolved_history",
+  "cutoff": "2025-12-01",
+  "anchor": {
+    "timestamp": "2025-12-01",
+    "value": 2.653304115
+  },
+  "base_rate": 0.47863247863247865,
+  "base_change": 0.03042078,
+  "scale": 0.36311345795505545,
+  "tags": [
+    "bls",
+    "30d",
+    "M"
+  ]
+}

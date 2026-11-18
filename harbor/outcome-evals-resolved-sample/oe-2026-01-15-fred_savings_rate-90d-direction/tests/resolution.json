@@ -1,0 +1,16 @@
+{
+  "id": "oe-2026-01-15-fred_savings_rate-90d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 4.4,
+  "outcome": false,
+  "scale": 0.7999999999999998,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-04-01",
+    "reading_value": 4.4,
+    "value": 4.4,
+    "outcome": false
+  }
+}

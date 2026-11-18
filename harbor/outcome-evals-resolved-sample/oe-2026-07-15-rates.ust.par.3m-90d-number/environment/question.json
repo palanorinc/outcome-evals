@@ -1,0 +1,32 @@
+{
+  "id": "oe-2026-07-15-rates.ust.par.3m-90d-number",
+  "question": "What will the 3-month U.S. Treasury par yield (Treasury daily par yield curve) be for 2026-10-13 (or the last business day before it with a published reading)?",
+  "kind": "number",
+  "made_on": "2026-07-15",
+  "deadline": "2026-10-13",
+  "series_id": "rates.ust.par.3m",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "B",
+    "grace_days": 46,
+    "transform": {
+      "kind": "level"
+    }
+  },
+  "source": "Source: U.S. Treasury, Bureau of the Fiscal Service",
+  "license": "Fiscal Data API license (public domain)",
+  "unit": "pct",
+  "split": "resolved_history",
+  "cutoff": "2026-07-14",
+  "anchor": {
+    "timestamp": "2026-07-14",
+    "value": 3.84
+  },
+  "base_change": 0.03,
+  "scale": 0.19999999999999996,
+  "tags": [
+    "us_treasury",
+    "90d",
+    "B"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "oe-2025-07-15-fred_housing-90d-number",
+  "question": "What will U.S. housing starts (Census, seasonally adjusted annual rate, thousands of units) be for October 2025 (the latest monthly reading dated on or before 2025-10-13)?",
+  "kind": "number",
+  "made_on": "2025-07-15",
+  "deadline": "2025-10-13",
+  "series_id": "fred_housing",
+  "rule": {
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 95,
+    "transform": {
+      "kind": "level"
+    }
+  },
+  "source": "Source: U.S. Census Bureau.",
+  "license": "U.S. Government work (17 U.S.C. \u00a7105)",
+  "unit": "count",
+  "split": "resolved_history",
+  "cutoff": "2025-05-01",
+  "anchor": {
+    "timestamp": "2025-05-01",
+    "value": 1289.0
+  },
+  "base_change": 3.0,
+  "scale": 91.0,
+  "tags": [
+    "us_census",
+    "90d",
+    "M"
+  ]
+}

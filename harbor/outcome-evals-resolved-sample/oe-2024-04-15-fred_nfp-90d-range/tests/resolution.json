@@ -1,0 +1,18 @@
+{
+  "id": "oe-2024-04-15-fred_nfp-90d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 53.0,
+  "outcome": false,
+  "scale": 116.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-07-01",
+    "reading_value": 157748.0,
+    "comparison_timestamp": "2024-06-01",
+    "comparison_value": 157695.0,
+    "value": 53.0,
+    "outcome": false
+  }
+}

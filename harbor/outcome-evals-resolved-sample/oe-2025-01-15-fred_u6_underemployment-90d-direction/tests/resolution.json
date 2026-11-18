@@ -1,0 +1,16 @@
+{
+  "id": "oe-2025-01-15-fred_u6_underemployment-90d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 7.8,
+  "outcome": true,
+  "scale": 0.2999999999999998,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-04-01",
+    "reading_value": 7.8,
+    "value": 7.8,
+    "outcome": true
+  }
+}

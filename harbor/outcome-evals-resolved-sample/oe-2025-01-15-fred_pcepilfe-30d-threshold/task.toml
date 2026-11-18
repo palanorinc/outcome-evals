@@ -1,0 +1,37 @@
+schema_version = "1.4"
+# the answer is copied from the agent's container into the separate verifier at the same path
+artifacts = ["/app/answer.json"]
+
+[task]
+name = "palanor/oe-2025-01-15-fred_pcepilfe-30d-threshold"
+version = "0.1.0"
+description = "Will the 12-month change in the U.S. core PCE price index, excluding food and energy (BEA, seasonally adjusted; computed from the index) for February 2025 (the latest monthly reading dated on or before 2025-02-14) be below 2.70%?"
+keywords = ["forecasting", "outcome-evals", "fred_pcepilfe", "binary"]
+
+[[task.authors]]
+name = "Palanor"
+email = "opensource@palanor.com"
+
+[metadata]
+eval = "Outcome Evals"
+split = "resolved_history"
+series_id = "fred_pcepilfe"
+kind = "binary"
+made_on = "2025-01-15"
+deadline = "2025-02-14"
+source = "Source: U.S. Bureau of Economic Analysis"
+license = "U.S. Government work (public domain)"
+caveat = "Resolved history: not a test of forecasting for any model trained after the outcome."
+
+[verifier]
+timeout_sec = 120.0
+# the grader runs in its own container: the agent never sees tests/ or the resolution
+environment_mode = "separate"
+
+[agent]
+timeout_sec = 900.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 1024
