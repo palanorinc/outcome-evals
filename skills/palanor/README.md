@@ -28,7 +28,7 @@ cd outcome-evals/skills/palanor/dist
 Copy the folder into your harness's skills directory and connect the MCP server there. For example, in Claude Code:
 
 ```bash
-cp -r agentskills/palanor ~/.claude/skills/
+mkdir -p ~/.claude/skills && cp -r agentskills/palanor ~/.claude/skills/
 claude mcp add --transport http palanor https://mcp.palanor.com --header "Authorization: Bearer $PALANOR_API_KEY"
 ```
 
@@ -48,7 +48,7 @@ shown. Tools appear to the agent as `palanor__<tool>`; the skill says so.
 ## Hermes Agent
 
 ```bash
-cp -r hermes/palanor ~/.hermes/skills/
+mkdir -p ~/.hermes/skills && cp -r hermes/palanor ~/.hermes/skills/
 # or, without a clone: hermes skills install palanorinc/outcome-evals/skills/palanor/dist/hermes/palanor --yes
 ```
 
