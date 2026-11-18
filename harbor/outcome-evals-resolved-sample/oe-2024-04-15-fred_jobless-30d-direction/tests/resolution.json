@@ -1,0 +1,16 @@
+{
+  "id": "oe-2024-04-15-fred_jobless-30d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 222000.0,
+  "outcome": true,
+  "scale": 11000.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-05-11",
+    "reading_value": 222000.0,
+    "value": 222000.0,
+    "outcome": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "oe-2025-07-15-fred_durable_goods_new_orders-90d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": -2.09360586,
+  "outcome": false,
+  "scale": 3.1673954994053455,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-10-01",
+    "reading_value": 307570.0,
+    "comparison_timestamp": "2025-09-01",
+    "comparison_value": 314147.0,
+    "value": -2.09360586,
+    "outcome": false
+  }
+}

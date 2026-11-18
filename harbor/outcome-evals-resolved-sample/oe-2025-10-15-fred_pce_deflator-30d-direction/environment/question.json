@@ -1,0 +1,37 @@
+{
+  "id": "oe-2025-10-15-fred_pce_deflator-30d-direction",
+  "question": "Will the 12-month change in the U.S. PCE price index (BEA, seasonally adjusted; computed from the index) for November 2025 (the latest monthly reading dated on or before 2025-11-14) be above 2.69%, its value for August 2025?",
+  "kind": "binary",
+  "made_on": "2025-10-15",
+  "deadline": "2025-11-14",
+  "series_id": "fred_pce_deflator",
+  "rule": {
+    "comparator": ">",
+    "threshold": 2.69,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 107,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "the latest reading as of 2025-10-15 (August 2025), rounded as shown"
+  },
+  "source": "Source: U.S. Bureau of Economic Analysis",
+  "license": "U.S. Government work (public domain)",
+  "unit": "index",
+  "split": "resolved_history",
+  "cutoff": "2025-08-01",
+  "anchor": {
+    "timestamp": "2025-08-01",
+    "value": 2.694303864
+  },
+  "base_rate": 0.5726495726495726,
+  "base_change": 0.058168416,
+  "scale": 0.31013704064632996,
+  "tags": [
+    "bea",
+    "30d",
+    "M"
+  ]
+}

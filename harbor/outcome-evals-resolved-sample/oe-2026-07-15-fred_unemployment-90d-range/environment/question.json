@@ -1,0 +1,37 @@
+{
+  "id": "oe-2026-07-15-fred_unemployment-90d-range",
+  "question": "Will the U.S. unemployment rate (BLS, seasonally adjusted) for October 2026 (the latest monthly reading dated on or before 2026-10-13) be at least 3.9% and below 4.3%?",
+  "kind": "binary",
+  "made_on": "2026-07-15",
+  "deadline": "2026-10-13",
+  "series_id": "fred_unemployment",
+  "rule": {
+    "comparator": "between",
+    "low": 3.9,
+    "high": 4.3,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "%",
+  "split": "resolved_history",
+  "cutoff": "2026-06-01",
+  "anchor": {
+    "timestamp": "2026-06-01",
+    "value": 4.2
+  },
+  "base_rate": 0.5526315789473685,
+  "base_change": -0.1,
+  "scale": 0.19999999999999973,
+  "tags": [
+    "bls",
+    "90d",
+    "M"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "oe-2024-07-15-fred_unemployment-90d-direction",
+  "question": "Will the U.S. unemployment rate (BLS, seasonally adjusted) for October 2024 (the latest monthly reading dated on or before 2024-10-13) be above 4.1%, its value for June 2024?",
+  "kind": "binary",
+  "made_on": "2024-07-15",
+  "deadline": "2024-10-13",
+  "series_id": "fred_unemployment",
+  "rule": {
+    "comparator": ">",
+    "threshold": 4.1,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 85,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "the latest reading as of 2024-07-15 (June 2024), rounded as shown"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "%",
+  "split": "resolved_history",
+  "cutoff": "2024-06-01",
+  "anchor": {
+    "timestamp": "2024-06-01",
+    "value": 4.1
+  },
+  "base_rate": 0.1724137931034483,
+  "base_change": -0.1,
+  "scale": 0.20000000000000018,
+  "tags": [
+    "bls",
+    "90d",
+    "M"
+  ]
+}

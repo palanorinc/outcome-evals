@@ -1,0 +1,18 @@
+{
+  "id": "oe-2026-01-15-fred_pcepilfe-90d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 3.083872407,
+  "outcome": false,
+  "scale": 0.24506091379419281,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-04-01",
+    "reading_value": 129.395,
+    "comparison_timestamp": "2025-04-01",
+    "comparison_value": 125.524,
+    "value": 3.083872407,
+    "outcome": false
+  }
+}

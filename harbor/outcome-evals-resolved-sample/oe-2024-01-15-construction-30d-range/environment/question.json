@@ -1,0 +1,38 @@
+{
+  "id": "oe-2024-01-15-construction-30d-range",
+  "question": "Will the one-month change in U.S. total construction spending (Census, seasonally adjusted annual rate; computed from the level) for February 2024 (the latest monthly reading dated on or before 2024-02-14) be at least 0.70% and below 2.10%?",
+  "kind": "binary",
+  "made_on": "2024-01-15",
+  "deadline": "2024-02-14",
+  "series_id": "construction",
+  "rule": {
+    "comparator": "between",
+    "low": 0.7,
+    "high": 2.1,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 108,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "1M"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Census Bureau.",
+  "license": "U.S. Government work (17 U.S.C. \u00a7105)",
+  "unit": "$bn",
+  "split": "resolved_history",
+  "cutoff": "2023-11-01",
+  "anchor": {
+    "timestamp": "2023-11-01",
+    "value": 1.436300532
+  },
+  "base_rate": 0.47863247863247865,
+  "base_change": -0.071961519,
+  "scale": 0.7133421506662296,
+  "tags": [
+    "us_census",
+    "30d",
+    "M"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "oe-2024-10-15-retail-sales-90d-range",
+  "question": "Will the one-month change in U.S. advance retail and food services sales (Census, seasonally adjusted; computed from the level) for January 2025 (the latest monthly reading dated on or before 2025-01-13) be at least -1.30% and below 0.30%?",
+  "kind": "binary",
+  "made_on": "2024-10-15",
+  "deadline": "2025-01-13",
+  "series_id": "retail-sales",
+  "rule": {
+    "comparator": "between",
+    "low": -1.3,
+    "high": 0.3,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 92,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "1M"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Census Bureau.",
+  "license": "U.S. Government work (17 U.S.C. \u00a7105)",
+  "unit": "index",
+  "split": "resolved_history",
+  "cutoff": "2024-08-01",
+  "anchor": {
+    "timestamp": "2024-08-01",
+    "value": -0.444436528
+  },
+  "base_rate": 0.5130434782608696,
+  "base_change": 0.050810334,
+  "scale": 0.8264120674132958,
+  "tags": [
+    "us_census",
+    "90d",
+    "M"
+  ]
+}

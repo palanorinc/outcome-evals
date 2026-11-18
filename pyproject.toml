@@ -1,0 +1,85 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "outcome-evals"
+dynamic = ["version"]
+description = "Score dated calls against what happened: a call format, a resolver, Brier/log/calibration scoring, and adapters for Inspect AI, Harbor and OpenEnv."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "DATA-LICENSES.md"]
+authors = [{ name = "Palanor, Inc.", email = "opensource@palanor.com" }]
+keywords = ["forecasting", "evaluation", "brier score", "calibration", "inspect-ai", "harbor", "openenv", "time series"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# versions these adapters were tested against on 2026-11-18
+inspect = ["inspect-ai>=0.3.291,<0.4; python_version >= '3.11'"]
+openenv = ["openenv>=0.13.0,<0.14", "uvicorn>=0.30"]
+dev = ["pytest>=8", "mypy>=1.10", "jsonschema>=4.20", "ruff>=0.6", "httpx>=0.27", "tomli>=2; python_version < '3.11'"]
+
+[project.scripts]
+outcome-evals = "outcome_evals.cli:main"
+
+[project.entry-points.inspect_ai]
+outcome_evals = "outcome_evals._registry"
+
+[project.urls]
+Homepage = "https://github.com/palanorinc/outcome-evals"
+Source = "https://github.com/palanorinc/outcome-evals"
+Issues = "https://github.com/palanorinc/outcome-evals/issues"
+"Palanor API" = "https://palanor.com/developers"
+
+[tool.hatch.version]
+path = "src/outcome_evals/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/outcome_evals"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/outcome_evals", "tests", "examples", "README.md", "LICENSE", "DATA-LICENSES.md", "CHANGELOG.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "live: calls Palanor's API (needs PALANOR_API_KEY)",
+  "inspect: needs inspect-ai",
+  "openenv: needs openenv",
+  "harbor: needs the harbor CLI",
+]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src/outcome_evals"]
+exclude = ["src/outcome_evals/adapters/"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B905"]
+
+# `uv sync` installs this group by default, so the Inspect Evals register's
+# generated commands (uv sync, then inspect eval) get inspect-ai without it
+# being a runtime dependency for pip users.
+[dependency-groups]
+dev = [
+  "inspect-ai>=0.3.291,<0.4; python_version >= '3.11'",
+  "pytest>=8",
+  "jsonschema>=4.20",
+]

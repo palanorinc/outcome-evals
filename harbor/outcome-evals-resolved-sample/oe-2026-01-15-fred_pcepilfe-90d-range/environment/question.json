@@ -1,0 +1,38 @@
+{
+  "id": "oe-2026-01-15-fred_pcepilfe-90d-range",
+  "question": "Will the 12-month change in the U.S. core PCE price index, excluding food and energy (BEA, seasonally adjusted; computed from the index) for April 2026 (the latest monthly reading dated on or before 2026-04-15) be at least 2.50% and below 3.00%?",
+  "kind": "binary",
+  "made_on": "2026-01-15",
+  "deadline": "2026-04-15",
+  "series_id": "fred_pcepilfe",
+  "rule": {
+    "comparator": "between",
+    "low": 2.5,
+    "high": 3.0,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 107,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Economic Analysis",
+  "license": "U.S. Government work (public domain)",
+  "unit": "index (2017=100)",
+  "split": "resolved_history",
+  "cutoff": "2025-11-01",
+  "anchor": {
+    "timestamp": "2025-11-01",
+    "value": 2.72120914
+  },
+  "base_rate": 0.46956521739130436,
+  "base_change": -0.013420171,
+  "scale": 0.24506091379419281,
+  "tags": [
+    "bea",
+    "90d",
+    "M"
+  ]
+}

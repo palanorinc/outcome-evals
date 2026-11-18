@@ -1,0 +1,37 @@
+{
+  "id": "oe-2025-04-15-fred_jolts-90d-range",
+  "question": "Will U.S. job openings (BLS JOLTS, seasonally adjusted, thousands) for July 2025 (the latest monthly reading dated on or before 2025-07-14) be at least 6,800 thousand and below 7,700 thousand?",
+  "kind": "binary",
+  "made_on": "2025-04-15",
+  "deadline": "2025-07-14",
+  "series_id": "fred_jolts",
+  "rule": {
+    "comparator": "between",
+    "low": 6800.0,
+    "high": 7700.0,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 115,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "count",
+  "split": "resolved_history",
+  "cutoff": "2025-02-01",
+  "anchor": {
+    "timestamp": "2025-02-01",
+    "value": 7242.0
+  },
+  "base_rate": 0.5043478260869565,
+  "base_change": 15.0,
+  "scale": 436.0,
+  "tags": [
+    "bls",
+    "90d",
+    "M"
+  ]
+}

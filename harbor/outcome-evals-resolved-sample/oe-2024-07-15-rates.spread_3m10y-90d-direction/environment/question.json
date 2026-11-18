@@ -1,0 +1,36 @@
+{
+  "id": "oe-2024-07-15-rates.spread_3m10y-90d-direction",
+  "question": "Will the 10-year minus 3-month U.S. Treasury par yield spread (Treasury daily par yield curve, percentage points) for 2024-10-13 (or the last business day before it with a published reading) be above -1.25 pp, its value for 2024-07-12?",
+  "kind": "binary",
+  "made_on": "2024-07-15",
+  "deadline": "2024-10-13",
+  "series_id": "rates.spread_3m10y",
+  "rule": {
+    "comparator": ">",
+    "threshold": -1.25,
+    "pick": "last_on_or_before",
+    "period": "B",
+    "grace_days": 46,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "the latest reading as of 2024-07-15 (2024-07-12), rounded as shown"
+  },
+  "source": "Source: U.S. Treasury, Bureau of the Fiscal Service",
+  "license": "Fiscal Data API license (public domain)",
+  "unit": "pp",
+  "split": "resolved_history",
+  "cutoff": "2024-07-12",
+  "anchor": {
+    "timestamp": "2024-07-12",
+    "value": -1.25
+  },
+  "base_rate": 0.4119819450143619,
+  "base_change": -0.08,
+  "scale": 0.28,
+  "tags": [
+    "us_treasury",
+    "90d",
+    "B"
+  ]
+}

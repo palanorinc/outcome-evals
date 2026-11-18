@@ -1,0 +1,18 @@
+{
+  "id": "oe-2024-04-15-avg-hrly-earn-90d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 3.633677991,
+  "outcome": false,
+  "scale": 0.21215845739195327,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-07-01",
+    "reading_value": 35.08,
+    "comparison_timestamp": "2023-07-01",
+    "comparison_value": 33.85,
+    "value": 3.633677991,
+    "outcome": false
+  }
+}

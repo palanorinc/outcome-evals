@@ -1,0 +1,90 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install (Inspect AI needs Python 3.11+)
+        run: |
+          python -m pip install --upgrade pip
+          if python -c 'import sys; sys.exit(sys.version_info < (3, 11))'; then
+            pip install -e ".[dev,inspect,openenv]"
+          else
+            pip install -e ".[dev,openenv]"
+          fi
+      - run: python -m pytest -q
+      - run: python examples/bring_your_own_calls/run.py
+      - run: outcome-evals validate src/outcome_evals/data/questions/resolved_history.jsonl src/outcome_evals/data/questions/live/*.jsonl
+      - name: Types and lint
+        if: matrix.python == '3.12'
+        run: |
+          mypy
+          ruff check src tests scripts examples
+
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[inspect]"
+      - name: Fixed-answer baseline through `inspect eval` (no model is called)
+        run: |
+          inspect eval outcome_evals/outcome_evals -T fixed_probability=0.5 --model mockllm/model --limit 300 --log-dir logs --display plain
+          inspect eval outcome_evals/outcome_evals -T split=live -T fixed_probability=0.5 --model mockllm/model --limit 20 --log-dir logs --display plain
+
+  harbor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "harbor==0.25.0"
+      - run: harbor lint harbor/outcome-evals-resolved-sample/oe-*
+      - name: Fixed-answer baseline (the oracle agent runs solution/solve.sh; no model)
+        run: harbor run -p harbor/outcome-evals-resolved-sample -a oracle -e docker -n 8 -y -o jobs --job-name ci
+      - run: python scripts/check_harbor_job.py jobs/ci --expect 51
+
+  openenv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[openenv]"
+      - name: Serve and validate against the OpenEnv standard
+        run: |
+          openenv validate openenv-env --skip-build
+          (uvicorn outcome_evals.adapters.openenv_server:app --port 8000 &) && sleep 8
+          openenv validate --url http://localhost:8000
+          python - <<'PY'
+          import json, urllib.request
+          def post(p, d):
+              r = urllib.request.Request("http://localhost:8000" + p, json.dumps(d).encode(), {"Content-Type": "application/json"})
+              return json.load(urllib.request.urlopen(r))
+          o = post("/reset", {"seed": 1})["observation"]
+          a = {"probability": 0.5} if o["kind"] == "binary" else {"value": 0.0}
+          s = post("/step", {"action": {**a, "question_id": o["question_id"]}})
+          print(o["question_id"], "reward", s["reward"])
+          assert s["done"] and 0 <= s["reward"] <= 1
+          PY

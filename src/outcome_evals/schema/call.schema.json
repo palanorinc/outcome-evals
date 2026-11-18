@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/palanorinc/outcome-evals/blob/main/src/outcome_evals/schema/call.schema.json",
+  "title": "Call",
+  "description": "A dated question about a public series, optionally with a forecast and a resolution. Field names shared with the fev format (cutoff, quantile_levels) mean the same thing there.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "question", "kind", "made_on", "deadline", "series_id", "rule", "source", "license"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1, "description": "Unique id."},
+    "question": {"type": "string", "minLength": 1, "description": "The question in words."},
+    "kind": {"enum": ["binary", "number"], "description": "binary: yes/no on a threshold or range; number: a value."},
+    "made_on": {"$ref": "#/$defs/date", "description": "The date the call was made."},
+    "deadline": {"$ref": "#/$defs/date", "description": "The date the rule reads the series at."},
+    "horizon_days": {"type": "integer", "description": "Optional; deadline minus made_on. Ignored on read."},
+    "series_id": {"type": "string", "minLength": 1, "description": "Public id of the resolving series (a Palanor signal slug, or the id in your own series file)."},
+    "rule": {"$ref": "#/$defs/rule"},
+    "source": {"type": "string", "minLength": 1, "description": "Who publishes the series (the credit line)."},
+    "license": {"type": "string", "minLength": 1, "description": "The series' licence."},
+    "unit": {"type": "string"},
+    "split": {"enum": ["live", "resolved_history", "private"]},
+    "cutoff": {"$ref": "#/$defs/date", "description": "The last series timestamp a forecaster may see (as in fev). Must not be after made_on."},
+    "anchor": {
+      "type": "object", "additionalProperties": false, "required": ["timestamp", "value"],
+      "description": "The latest reading a forecaster could see, in the rule's units.",
+      "properties": {"timestamp": {"$ref": "#/$defs/date"}, "value": {"type": "number"}}
+    },
+    "base_rate": {"type": "number", "minimum": 0, "maximum": 1, "description": "How often the rule held when replayed from earlier readings."},
+    "base_change": {"type": "number", "description": "Median historical change over the same distance (number calls' base-rate baseline)."},
+    "scale": {"type": "number", "exclusiveMinimum": 0, "description": "Median absolute historical change over the same distance; divides number-call errors."},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "forecast": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "probability": {"type": "number", "minimum": 0, "maximum": 1},
+        "value": {"type": "number"},
+        "quantile_levels": {"type": "array", "items": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1}},
+        "quantiles": {"type": "array", "items": {"type": "number"}},
+        "forecaster": {"type": "string"}
+      }
+    },
+    "resolution": {
+      "type": "object", "additionalProperties": false, "required": ["status", "as_of"],
+      "properties": {
+        "status": {"enum": ["resolved", "pending", "void"]},
+        "as_of": {"$ref": "#/$defs/date"},
+        "reason": {"type": "string"},
+        "reading_timestamp": {"$ref": "#/$defs/date"},
+        "reading_value": {"type": "number"},
+        "comparison_timestamp": {"$ref": "#/$defs/date"},
+        "comparison_value": {"type": "number"},
+        "value": {"type": "number"},
+        "outcome": {"type": "boolean"},
+        "revisions": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "notes": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"kind": {"const": "binary"}}},
+      "then": {"properties": {"rule": {"required": ["comparator"]}, "forecast": {"required": ["probability"]}}}
+    },
+    {
+      "if": {"properties": {"kind": {"const": "number"}}},
+      "then": {"properties": {"rule": {"not": {"required": ["comparator"]}}}}
+    }
+  ],
+  "$defs": {
+    "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "rule": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "comparator": {"enum": [">", ">=", "<", "<=", "between"]},
+        "threshold": {"type": "number"},
+        "low": {"type": "number", "description": "Inclusive lower bound for 'between'."},
+        "high": {"type": "number", "description": "Exclusive upper bound for 'between'."},
+        "pick": {"enum": ["last_on_or_before", "first_on_or_after"], "default": "last_on_or_before"},
+        "period": {"enum": ["D", "B", "W", "M", "Q", "A"], "default": "M", "description": "The series' cadence."},
+        "max_gap_days": {"type": "integer", "minimum": 0, "description": "How far from the deadline the reading may be dated. Default by period: D/B 5, W 8, M 31, Q 92, A 366."},
+        "grace_days": {"type": "integer", "minimum": 0, "default": 60, "description": "How long after the deadline to wait for a late reading before resolving on what exists, or voiding."},
+        "transform": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "kind": {"enum": ["level", "change", "pct_change", "annualized_pct_change"], "default": "level"},
+            "lag": {"type": "string", "pattern": "^[1-9][0-9]*[DWMQYdwmqy]$"},
+            "tolerance_days": {"type": "integer", "minimum": 0, "default": 3}
+          }
+        },
+        "threshold_basis": {"type": "string"}
+      },
+      "allOf": [
+        {"if": {"properties": {"comparator": {"const": "between"}}, "required": ["comparator"]}, "then": {"required": ["low", "high"]}},
+        {"if": {"properties": {"comparator": {"enum": [">", ">=", "<", "<="]}}, "required": ["comparator"]}, "then": {"required": ["threshold"]}}
+      ]
+    }
+  }
+}

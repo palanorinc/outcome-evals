@@ -1,0 +1,36 @@
+{
+  "id": "oe-2024-07-15-permits-30d-direction",
+  "question": "Will U.S. building permits for new private housing units (Census, seasonally adjusted annual rate, thousands) for August 2024 (the latest monthly reading dated on or before 2024-08-14) be above 1,405 thousand, its value for May 2024?",
+  "kind": "binary",
+  "made_on": "2024-07-15",
+  "deadline": "2024-08-14",
+  "series_id": "permits",
+  "rule": {
+    "comparator": ">",
+    "threshold": 1405.0,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 95,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "the latest reading as of 2024-07-15 (May 2024), rounded as shown"
+  },
+  "source": "Source: U.S. Census Bureau.",
+  "license": "U.S. Government work (17 U.S.C. \u00a7105)",
+  "unit": "count",
+  "split": "resolved_history",
+  "cutoff": "2024-05-01",
+  "anchor": {
+    "timestamp": "2024-05-01",
+    "value": 1405.0
+  },
+  "base_rate": 0.5555555555555556,
+  "base_change": 11.0,
+  "scale": 61.0,
+  "tags": [
+    "us_census",
+    "30d",
+    "M"
+  ]
+}

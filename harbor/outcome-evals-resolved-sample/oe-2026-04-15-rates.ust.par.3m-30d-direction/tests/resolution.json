@@ -1,0 +1,16 @@
+{
+  "id": "oe-2026-04-15-rates.ust.par.3m-30d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 3.69,
+  "outcome": false,
+  "scale": 0.050000000000000266,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2026-05-15",
+    "reading_value": 3.69,
+    "value": 3.69,
+    "outcome": false
+  }
+}

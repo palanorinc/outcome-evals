@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openenv-outcome_evals"
+version = "0.1.0"
+description = "Outcome Evals for OpenEnv: dated questions about public series; the reward is the score at resolution."
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Palanor, Inc.", email = "opensource@palanor.com" }]
+dependencies = [
+    "outcome-evals[openenv]>=0.1.0",
+]
+
+[project.scripts]
+server = "outcome_evals_env.server.app:main"
+
+[tool.setuptools]
+packages = ["outcome_evals_env", "outcome_evals_env.server"]
+package-dir = { "outcome_evals_env" = ".", "outcome_evals_env.server" = "server" }

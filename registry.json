@@ -1,0 +1,219 @@
+[
+  {
+    "name": "outcome-evals-resolved-sample",
+    "version": "0.1.0",
+    "description": "Outcome Evals: 51 resolved yes/no and number questions about U.S. federal series (BLS, BEA, Census, DOL, Treasury, EIA). Resolved history: not a test of forecasting for any model trained after the outcome. Reward = 1 - Brier (yes/no) or 1/(1+|error|/scale) (number).",
+    "tasks": [
+      {
+        "name": "oe-2024-01-15-construction-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-01-15-construction-30d-range"
+      },
+      {
+        "name": "oe-2024-01-15-fred_cpi-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-01-15-fred_cpi-30d-direction"
+      },
+      {
+        "name": "oe-2024-01-15-fred_lfpr-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-01-15-fred_lfpr-90d-range"
+      },
+      {
+        "name": "oe-2024-01-15-fred_savings_rate-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-01-15-fred_savings_rate-90d-direction"
+      },
+      {
+        "name": "oe-2024-01-15-rates.ust.par.2y-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-01-15-rates.ust.par.2y-30d-direction"
+      },
+      {
+        "name": "oe-2024-04-15-avg-hrly-earn-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-04-15-avg-hrly-earn-90d-direction"
+      },
+      {
+        "name": "oe-2024-04-15-fred_core_cpi-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-04-15-fred_core_cpi-90d-range"
+      },
+      {
+        "name": "oe-2024-04-15-fred_gdp-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-04-15-fred_gdp-30d-range"
+      },
+      {
+        "name": "oe-2024-04-15-fred_jobless-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-04-15-fred_jobless-30d-direction"
+      },
+      {
+        "name": "oe-2024-04-15-rates.ust.par.3m-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-04-15-rates.ust.par.3m-90d-range"
+      },
+      {
+        "name": "oe-2024-07-15-continued-claims-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-07-15-continued-claims-90d-range"
+      },
+      {
+        "name": "oe-2024-07-15-fred_pce_deflator-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-07-15-fred_pce_deflator-30d-range"
+      },
+      {
+        "name": "oe-2024-07-15-fred_unemployment-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-07-15-fred_unemployment-90d-direction"
+      },
+      {
+        "name": "oe-2024-07-15-permits-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-07-15-permits-30d-direction"
+      },
+      {
+        "name": "oe-2024-07-15-rates.spread_3m10y-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-07-15-rates.spread_3m10y-90d-direction"
+      },
+      {
+        "name": "oe-2024-10-15-fred_lfpr-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-10-15-fred_lfpr-30d-range"
+      },
+      {
+        "name": "oe-2024-10-15-fred_savings_rate-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-10-15-fred_savings_rate-30d-direction"
+      },
+      {
+        "name": "oe-2024-10-15-rates.ust.par.10y-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-10-15-rates.ust.par.10y-90d-direction"
+      },
+      {
+        "name": "oe-2024-10-15-retail-sales-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2024-10-15-retail-sales-90d-range"
+      },
+      {
+        "name": "oe-2025-01-15-auto-sales-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-01-15-auto-sales-90d-range"
+      },
+      {
+        "name": "oe-2025-01-15-avg-hrly-earn-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-01-15-avg-hrly-earn-30d-direction"
+      },
+      {
+        "name": "oe-2025-01-15-fred_core_cpi-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-01-15-fred_core_cpi-30d-range"
+      },
+      {
+        "name": "oe-2025-01-15-fred_durable_goods_new_orders-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-01-15-fred_durable_goods_new_orders-90d-direction"
+      },
+      {
+        "name": "oe-2025-01-15-rates.ust.par.3m-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-01-15-rates.ust.par.3m-30d-range"
+      },
+      {
+        "name": "oe-2025-04-15-continued-claims-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-04-15-continued-claims-30d-range"
+      },
+      {
+        "name": "oe-2025-04-15-fred_housing-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-04-15-fred_housing-90d-direction"
+      },
+      {
+        "name": "oe-2025-04-15-fred_jolts-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-04-15-fred_jolts-90d-range"
+      },
+      {
+        "name": "oe-2025-04-15-fred_unemployment-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-04-15-fred_unemployment-30d-direction"
+      },
+      {
+        "name": "oe-2025-04-15-rates.spread_3m10y-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-04-15-rates.spread_3m10y-30d-direction"
+      },
+      {
+        "name": "oe-2025-07-15-avg-hrly-earn-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-07-15-avg-hrly-earn-30d-range"
+      },
+      {
+        "name": "oe-2025-07-15-fred_durable_goods_new_orders-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-07-15-fred_durable_goods_new_orders-90d-range"
+      },
+      {
+        "name": "oe-2025-07-15-fred_gdp-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-07-15-fred_gdp-30d-direction"
+      },
+      {
+        "name": "oe-2025-07-15-rates.ust.par.3m-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-07-15-rates.ust.par.3m-90d-direction"
+      },
+      {
+        "name": "oe-2025-10-15-continued-claims-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-10-15-continued-claims-90d-direction"
+      },
+      {
+        "name": "oe-2025-10-15-fred_housing-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-10-15-fred_housing-90d-range"
+      },
+      {
+        "name": "oe-2025-10-15-fred_pce_deflator-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-10-15-fred_pce_deflator-30d-direction"
+      },
+      {
+        "name": "oe-2025-10-15-fred_unemployment-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-10-15-fred_unemployment-30d-range"
+      },
+      {
+        "name": "oe-2025-10-15-rates.spread_3m10y-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2025-10-15-rates.spread_3m10y-30d-range"
+      },
+      {
+        "name": "oe-2026-01-15-fred_lfpr-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-01-15-fred_lfpr-30d-direction"
+      },
+      {
+        "name": "oe-2026-01-15-fred_pcepilfe-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-01-15-fred_pcepilfe-90d-range"
+      },
+      {
+        "name": "oe-2026-01-15-rates.ust.par.10y-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-01-15-rates.ust.par.10y-30d-range"
+      },
+      {
+        "name": "oe-2026-01-15-retail-sales-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-01-15-retail-sales-90d-direction"
+      },
+      {
+        "name": "oe-2026-04-15-auto-sales-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-04-15-auto-sales-90d-direction"
+      },
+      {
+        "name": "oe-2026-04-15-fred_core_cpi-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-04-15-fred_core_cpi-30d-direction"
+      },
+      {
+        "name": "oe-2026-04-15-fred_durable_goods_new_orders-30d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-04-15-fred_durable_goods_new_orders-30d-range"
+      },
+      {
+        "name": "oe-2026-04-15-fred_nfp-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-04-15-fred_nfp-90d-range"
+      },
+      {
+        "name": "oe-2026-04-15-rates.ust.par.3m-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-04-15-rates.ust.par.3m-30d-direction"
+      },
+      {
+        "name": "oe-2026-07-15-fred_jobless-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-07-15-fred_jobless-90d-range"
+      },
+      {
+        "name": "oe-2026-07-15-fred_savings_rate-30d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-07-15-fred_savings_rate-30d-direction"
+      },
+      {
+        "name": "oe-2026-07-15-fred_unemployment-90d-range",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-07-15-fred_unemployment-90d-range"
+      },
+      {
+        "name": "oe-2026-07-15-rates.spread_2y10y-90d-direction",
+        "path": "harbor/outcome-evals-resolved-sample/oe-2026-07-15-rates.spread_2y10y-90d-direction"
+      }
+    ],
+    "metrics": [
+      {
+        "type": "mean",
+        "kwargs": {}
+      }
+    ]
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "id": "oe-2025-01-15-rates.ust.par.3m-30d-range",
+  "question": "Will the 3-month U.S. Treasury par yield (Treasury daily par yield curve) for 2025-02-14 (or the last business day before it with a published reading) be at least 4.35% and below 4.45%?",
+  "kind": "binary",
+  "made_on": "2025-01-15",
+  "deadline": "2025-02-14",
+  "series_id": "rates.ust.par.3m",
+  "rule": {
+    "comparator": "between",
+    "low": 4.35,
+    "high": 4.45,
+    "pick": "last_on_or_before",
+    "period": "B",
+    "grace_days": 46,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Treasury, Bureau of the Fiscal Service",
+  "license": "Fiscal Data API license (public domain)",
+  "unit": "pct",
+  "split": "resolved_history",
+  "cutoff": "2025-01-14",
+  "anchor": {
+    "timestamp": "2025-01-14",
+    "value": 4.36
+  },
+  "base_rate": 0.4649476228847704,
+  "base_change": 0.01,
+  "scale": 0.050000000000000044,
+  "tags": [
+    "us_treasury",
+    "30d",
+    "B"
+  ]
+}

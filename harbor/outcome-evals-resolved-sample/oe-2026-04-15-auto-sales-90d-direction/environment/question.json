@@ -1,0 +1,36 @@
+{
+  "id": "oe-2026-04-15-auto-sales-90d-direction",
+  "question": "Will U.S. total light-vehicle sales (BEA, seasonally adjusted annual rate, millions of units) for July 2026 (the latest monthly reading dated on or before 2026-07-14) be above 16.45 million, its value for March 2026?",
+  "kind": "binary",
+  "made_on": "2026-04-15",
+  "deadline": "2026-07-14",
+  "series_id": "auto-sales",
+  "rule": {
+    "comparator": ">",
+    "threshold": 16.45,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 83,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "the latest reading as of 2026-04-15 (March 2026), rounded as shown"
+  },
+  "source": "Source: U.S. Bureau of Economic Analysis",
+  "license": "U.S. Government work (public domain)",
+  "unit": "units",
+  "split": "resolved_history",
+  "cutoff": "2026-03-01",
+  "anchor": {
+    "timestamp": "2026-03-01",
+    "value": 16.449
+  },
+  "base_rate": 0.49137931034482757,
+  "base_change": -0.0265,
+  "scale": 0.702,
+  "tags": [
+    "bea",
+    "90d",
+    "M"
+  ]
+}

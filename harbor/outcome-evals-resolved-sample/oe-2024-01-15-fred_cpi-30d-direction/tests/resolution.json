@@ -1,0 +1,18 @@
+{
+  "id": "oe-2024-01-15-fred_cpi-30d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 3.157074142,
+  "outcome": false,
+  "scale": 0.39487756106242333,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-02-01",
+    "reading_value": 310.967,
+    "comparison_timestamp": "2023-02-01",
+    "comparison_value": 301.45,
+    "value": 3.157074142,
+    "outcome": false
+  }
+}

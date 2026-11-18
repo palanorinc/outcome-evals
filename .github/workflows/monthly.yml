@@ -1,0 +1,43 @@
+name: monthly
+
+# On the 1st of each month: re-read the public series from Palanor's API,
+# record resolutions for live questions that are due, publish a new live batch,
+# run the checks, and commit the result as Palanor. No person is needed.
+on:
+  schedule:
+    - cron: "0 15 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monthly
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'palanorinc/outcome-evals'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - name: Refresh series (stops if any source is no longer public domain)
+        env:
+          PALANOR_API_KEY: ${{ secrets.PALANOR_API_KEY }}
+        run: outcome-evals refresh
+      - run: outcome-evals resolve-live
+      - run: outcome-evals publish-live
+      - name: Checks before committing
+        run: python -m pytest -q tests/test_public_set.py tests/test_calls.py tests/test_resolve.py tests/test_score.py
+      - name: Commit as Palanor
+        run: |
+          git config user.name "Palanor"
+          git config user.email "opensource@palanor.com"
+          git add src/outcome_evals/data
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "Monthly data: series as of $(date -u +%F), resolutions, live batch $(date -u +%F)"
+          git push

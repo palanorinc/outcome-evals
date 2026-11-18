@@ -1,0 +1,38 @@
+{
+  "id": "oe-2025-01-15-fred_core_cpi-30d-range",
+  "question": "Will the 12-month change in U.S. core CPI (CPI-U less food and energy, seasonally adjusted; computed from the index) for February 2025 (the latest monthly reading dated on or before 2025-02-14) be at least 3.10% and below 3.30%?",
+  "kind": "binary",
+  "made_on": "2025-01-15",
+  "deadline": "2025-02-14",
+  "series_id": "fred_core_cpi",
+  "rule": {
+    "comparator": "between",
+    "low": 3.1,
+    "high": 3.3,
+    "pick": "last_on_or_before",
+    "period": "M",
+    "grace_days": 90,
+    "transform": {
+      "kind": "pct_change",
+      "lag": "12M"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Bureau of Labor Statistics",
+  "license": "U.S. Government work (public domain)",
+  "unit": "index",
+  "split": "resolved_history",
+  "cutoff": "2024-12-01",
+  "anchor": {
+    "timestamp": "2024-12-01",
+    "value": 3.213333546
+  },
+  "base_rate": 0.3898305084745763,
+  "base_change": 0.00049129,
+  "scale": 0.12561494048519695,
+  "tags": [
+    "bls",
+    "30d",
+    "M"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "oe-2024-01-15-fred_lfpr-90d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 62.6,
+  "outcome": true,
+  "scale": 0.19999999999999574,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-04-01",
+    "reading_value": 62.6,
+    "value": 62.6,
+    "outcome": true
+  }
+}

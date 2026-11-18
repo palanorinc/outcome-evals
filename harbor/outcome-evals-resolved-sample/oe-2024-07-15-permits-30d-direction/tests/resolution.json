@@ -1,0 +1,16 @@
+{
+  "id": "oe-2024-07-15-permits-30d-direction",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 1492.0,
+  "outcome": true,
+  "scale": 61.0,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2024-08-01",
+    "reading_value": 1492.0,
+    "value": 1492.0,
+    "outcome": true
+  }
+}

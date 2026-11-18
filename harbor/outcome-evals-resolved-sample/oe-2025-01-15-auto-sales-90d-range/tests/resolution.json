@@ -1,0 +1,16 @@
+{
+  "id": "oe-2025-01-15-auto-sales-90d-range",
+  "kind": "binary",
+  "status": "resolved",
+  "value": 17.516,
+  "outcome": true,
+  "scale": 0.6120000000000019,
+  "resolution": {
+    "status": "resolved",
+    "as_of": "2026-11-18",
+    "reading_timestamp": "2025-04-01",
+    "reading_value": 17.516,
+    "value": 17.516,
+    "outcome": true
+  }
+}

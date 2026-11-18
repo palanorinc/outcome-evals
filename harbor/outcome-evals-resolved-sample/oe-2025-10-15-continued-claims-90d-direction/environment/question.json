@@ -1,0 +1,36 @@
+{
+  "id": "oe-2025-10-15-continued-claims-90d-direction",
+  "question": "Will U.S. continued unemployment insurance claims (DOL, seasonally adjusted, week ending) for the latest weekly reading dated on or before 2026-01-13 (expected: 2026-01-10) be above 1,929,000, its value for the week dated 2025-09-27?",
+  "kind": "binary",
+  "made_on": "2025-10-15",
+  "deadline": "2026-01-13",
+  "series_id": "continued-claims",
+  "rule": {
+    "comparator": ">",
+    "threshold": 1929000.0,
+    "pick": "last_on_or_before",
+    "period": "W",
+    "grace_days": 58,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "the latest reading as of 2025-10-15 (the week dated 2025-09-27), rounded as shown"
+  },
+  "source": "Source: U.S. Department of Labor.",
+  "license": "Public domain (U.S. Government work)",
+  "unit": "count",
+  "split": "resolved_history",
+  "cutoff": "2025-09-27",
+  "anchor": {
+    "timestamp": "2025-09-27",
+    "value": 1929000.0
+  },
+  "base_rate": 0.4367588932806324,
+  "base_change": -12000.0,
+  "scale": 88000.0,
+  "tags": [
+    "us_dol",
+    "90d",
+    "W"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "oe-2026-01-15-rates.ust.par.10y-30d-range",
+  "question": "Will the 10-year U.S. Treasury par yield (Treasury daily par yield curve) for 2026-02-14 (or the last business day before it with a published reading) be at least 4.05% and below 4.30%?",
+  "kind": "binary",
+  "made_on": "2026-01-15",
+  "deadline": "2026-02-14",
+  "series_id": "rates.ust.par.10y",
+  "rule": {
+    "comparator": "between",
+    "low": 4.05,
+    "high": 4.3,
+    "pick": "last_on_or_before",
+    "period": "B",
+    "grace_days": 46,
+    "transform": {
+      "kind": "level"
+    },
+    "threshold_basis": "rounded lower and upper quartiles of historical moves over the same distance"
+  },
+  "source": "Source: U.S. Treasury, Bureau of the Fiscal Service",
+  "license": "Fiscal Data API license (public domain)",
+  "unit": "pct",
+  "split": "resolved_history",
+  "cutoff": "2026-01-14",
+  "anchor": {
+    "timestamp": "2026-01-14",
+    "value": 4.15
+  },
+  "base_rate": 0.46752722872125857,
+  "base_change": 0.01,
+  "scale": 0.13000000000000034,
+  "tags": [
+    "us_treasury",
+    "30d",
+    "B"
+  ]
+}
