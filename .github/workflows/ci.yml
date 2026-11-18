@@ -64,6 +64,19 @@ jobs:
         run: harbor run -p harbor/outcome-evals-resolved-sample -a oracle -e docker -n 8 -y -o jobs --job-name ci
       - run: python scripts/check_harbor_job.py jobs/ci --expect 52
 
+  harbor-from-repo:
+    # what an outside user runs: the dataset straight from this public repo's registry.json
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "harbor==0.25.0"
+      - run: harbor run --repo "palanorinc/outcome-evals@${{ github.sha }}" -d outcome-evals-resolved-sample -a oracle -e docker -n 8 -y -o jobs --job-name repo
+      - run: python scripts/check_harbor_job.py jobs/repo --expect 52
+
   openenv:
     runs-on: ubuntu-latest
     steps:
