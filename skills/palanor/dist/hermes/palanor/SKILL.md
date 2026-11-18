@@ -50,11 +50,11 @@ licence, and the server doesn't serve them. Not for anyone's organization data, 
 ## Before the first call
 
 In Hermes the server's tools appear as `mcp__palanor__palanor_get_signal` for `palanor_get_signal`, and so on
-(when the server is named `palanor` in `config.yaml`). The names in this skill are the server's own; add the
-`mcp__palanor__` prefix when you call them.
+(when the server is named `palanor`). The names in this skill are the server's own; add the `mcp__palanor__`
+prefix when you call them.
 
-If no `mcp__palanor__` tools are in your tool list, the server isn't connected. Tell the user to add this to
-`~/.hermes/config.yaml` and run `/reload-mcp`:
+If no `mcp__palanor__` tools are in your tool list, the server isn't connected. Tell the user to add this entry to
+the `mcp_servers` section of their Hermes config, then run `/reload-mcp`:
 
 ```yaml
 mcp_servers:
@@ -64,8 +64,8 @@ mcp_servers:
       Authorization: "Bearer ${PALANOR_API_KEY}"
 ```
 
-`PALANOR_API_KEY` goes in `~/.hermes/.env` (Hermes asks for it when this skill loads; a free key takes a minute
-at https://palanor.com/developers/keys). Never ask the user to paste a key into the chat.
+Hermes asks the user for `PALANOR_API_KEY` when this skill loads and keeps it out of the chat (a free key takes a
+minute at https://palanor.com/developers/keys). Never ask the user to paste a key into the chat, and never read or print it.
 
 ## Which tool
 

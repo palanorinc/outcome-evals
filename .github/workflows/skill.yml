@@ -56,6 +56,23 @@ jobs:
               print(f.severity, f.rule, f.message)
           sys.exit(1 if any(f.severity == "error" for f in findings) else 0)
           PY
+      - name: Hermes Agent's install-time security scan (skills_guard, v0.23.2), every variant
+        # `hermes skills install` from GitHub refuses a skill this scan calls dangerous, even with --force.
+        run: |
+          PYTHONPATH=/tmp/hermes HOME=$(mktemp -d) python - <<'PY'
+          import sys
+          from pathlib import Path
+          from tools.skills_guard import scan_skill, should_allow_install
+          bad = 0
+          for v in ["agentskills", "openclaw", "goose", "hermes"]:
+              r = scan_skill(Path(f"skills/palanor/dist/{v}/palanor"), "community")
+              ok, why = should_allow_install(r)
+              print(v, r.verdict, why)
+              for f in r.findings:
+                  print("  ", f.severity, f.pattern_id, f.file, f.line)
+              bad += 0 if (ok and not r.findings) else 1
+          sys.exit(1 if bad else 0)
+          PY
       - name: Goose recipe validator (goose 1.60.1; no model)
         run: |
           mkdir -p /tmp/goose && curl -fsSL https://github.com/aaif-goose/goose/releases/download/v1.60.1/goose-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /tmp/goose
