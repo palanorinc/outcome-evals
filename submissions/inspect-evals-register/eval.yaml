@@ -1,0 +1,28 @@
+full_title: "Outcome Evals: dated calls scored against published U.S. federal series"
+common_title: "Outcome Evals"
+description: |
+  Yes/no and number questions about U.S. federal statistics (BLS, BEA, Census, Department of Labor, Treasury, EIA),
+  each resolved mechanically against the published series by a written rule and scored with Brier, log score,
+  calibration and hit rate beside no-change and base-rate baselines. The default split is resolved history
+  (questions made quarterly since January 2024 with their outcomes), which tests the plumbing and is not a test of
+  forecasting for any model trained after the outcomes; the live split holds open questions with 30- and 90-day
+  deadlines, published monthly. Organizations can pass their own calls file.
+arxiv: ""
+contributors:
+  - <palanor-github-account>
+tags:
+  - Reasoning
+  - forecasting
+  - calibration
+  - text-generation
+metadata:
+  requires:
+    internet: false
+tasks:
+  - name: outcome_evals
+    task_path: src/outcome_evals/adapters/inspect_task.py
+source:
+  repository_url: https://github.com/palanorinc/outcome-evals
+  repository_commit: 129c05a38fb819e074d1e268e4705ab12732d542
+  maintainers:
+    - <palanor-github-account>
