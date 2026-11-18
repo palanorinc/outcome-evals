@@ -1,0 +1,1647 @@
+{
+ "server": "https://mcp.palanor.com",
+ "captured": "2026-11-18",
+ "tools": [
+  {
+   "name": "palanor_list_signals",
+   "description": "List or search signals in the Palanor lattice — the unified map of every data source Palanor reads (FRED macro series, commodities, prediction markets, survey indices, Custom Indices). In Palanor, everything is a signal. Pass `query` to search by meaning and name (\"are households falling behind\", \"UNRATE\", \"propane demand\"); results come back most relevant first. Without `query`, signals are listed by slug and can be paged with `offset`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Optional natural-language question, theme, name or identifier. Ranks results by relevance."
+     },
+     "category": {
+      "type": "string",
+      "description": "Optional category filter (e.g. macro, labor, rates, energy, sentiment)."
+     },
+     "geo": {
+      "type": "string",
+      "description": "Optional geography: an ISO3 country code (USA, CAN, GBR, BRA) or a region (world, north-america, latam, europe, eu, euro-area, asia-pacific, mena, sub-saharan-africa, africa, asia, oceania, g7, g20, oecd). Comma-separate several. A region includes its countries; world means signals that measure the whole world."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Max rows, 1–200 (default 50)."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Rows to skip when listing without a query (default 0)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_signal",
+   "description": "Get one signal's metadata, its latest value, where that value stands in the signal's own record (percentile, record high/low, highest/lowest since, 30/90/365-day change, moving averages, z-scores, and a plain-language read), and optionally recent history, from the Palanor lattice.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Signal slug (from palanor_list_signals)."
+     },
+     "history": {
+      "type": "boolean",
+      "description": "Include ~90 recent observations (default false)."
+     },
+     "vintage": {
+      "type": "string",
+      "enum": [
+       "latest",
+       "first"
+      ],
+      "description": "latest (default): values as revised today. first: each observation as first published, before revisions (for major macro releases; available only where licensed for redistribution)."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   }
+  },
+  {
+   "name": "palanor_list_indices",
+   "description": "List Palanor Custom Indices — named, narrated composite indicators authored by Palanor (e.g. The Palanor Index, Capital Tightness). Each returns a live value and a published methodology page.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "palanor_get_index",
+   "description": "Get one Palanor Custom Index in full — live value, component breakdown, and methodology. Palanor shows its work: the reasoning ships with the number.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Index slug, with or without the palanor_ prefix (e.g. capital_tightness)."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   }
+  },
+  {
+   "name": "palanor_list_currents",
+   "description": "List Currents — the world's named macro motions measured by Palanor (Reshoring, AI Margin Compression, The Capital Window). Each carries three reads: Momentum (direction + velocity), Belief (who has bought in), Maturity.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "palanor_get_current",
+   "description": "Get one Current's live Momentum / Belief / Maturity reads and its brand phrase.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Current slug (from palanor_list_currents)."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   }
+  },
+  {
+   "name": "palanor_get_risk_factor_changes",
+   "description": "How S&P 500 companies' 10-K risk factors changed year over year. Each risk factor in a company's latest 10-K (Item 1A) is paired with its counterpart in the prior 10-K and marked added, removed, rewritten or unchanged, tagged to a controlled taxonomy (AI & technology, cyber, regulatory, tariffs & trade, geopolitical, supply chain, labor, climate, credit & liquidity, litigation, concentration, competition, macro & demand), with a one-line summary of what changed. Every row carries its provenance: both SEC filings (public domain) and the derivation.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Optional ticker (e.g. JPM)."
+     },
+     "since": {
+      "type": "string",
+      "description": "Optional YYYY-MM-DD: filings on or after this date."
+     },
+     "category": {
+      "type": "string",
+      "description": "Optional category: ai_technology, cyber, regulatory, tariffs_trade, geopolitical, supply_chain, labor_talent, climate_physical, credit_liquidity, litigation, concentration, competition, macro_demand, other."
+     },
+     "change_type": {
+      "type": "string",
+      "description": "Optional: added, removed, rewritten or unchanged. Default: every change except unchanged."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Max rows, 1–200 (default 50)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_wire",
+   "description": "Query the Palanor Wire — primary-source market and economic items normalized into one importance-scored feed. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "beat": {
+      "type": "string",
+      "description": "Optional beat filter (e.g. markets, ai, economics)."
+     },
+     "kind": {
+      "type": "string",
+      "description": "Optional kind filter (e.g. news, analyst_rating, fund_flow)."
+     },
+     "since_hours": {
+      "type": "number",
+      "description": "Only items newer than N hours."
+     },
+     "min_importance": {
+      "type": "number",
+      "description": "Minimum importance score 0–100 (default 0)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Max rows, 1–100 (default 25)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_guidance",
+   "description": "Read the Palanor Guidance Ledger — quantitative forward guidance (revenue, EPS, margins, capex, FCF…) from S&P 500 8-K earnings releases. Each statement is quoted verbatim from the SEC filing, verified, labelled raised/held/lowered against the company's prior figure, and matched to the filed actual where one exists. Where a figure has no SEC-tagged actual (adjusted, non-GAAP and segment figures), reported_outcome gives the figure the company itself later reported for the period, from its own SEC filing (\"as the company reported it\"): say so when you cite it. Cite the quote and the source filing.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Company ticker, e.g. TGT. Omit for the latest statements across the S&P 500."
+     },
+     "metric": {
+      "type": "string",
+      "description": "Optional: revenue, eps_gaap, eps_adjusted, operating_margin, gross_margin, capex, free_cash_flow, ebitda, segment_revenue, other."
+     },
+     "since": {
+      "type": "string",
+      "description": "Only statements filed on or after this date (YYYY-MM-DD)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Max rows, 1–50 (default 20)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_kpis",
+   "description": "Read the Palanor KPI Ledger — company-reported operating metrics (subscribers, net adds, same-store sales, backlog, bookings, RPO, net revenue retention, ARPU, deliveries, production, occupancy, RevPAR, load factor, unit revenue and cost…) from S&P 500 8-K earnings releases, for the period each release reports. Each value is quoted verbatim from the SEC filing, verified, and linked into a per-company series; renamed metrics, unit changes, stated redefinitions and revised values are flagged. Cite the quote and the source filing.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Company ticker, e.g. NFLX. Omit for the latest values across the S&P 500."
+     },
+     "kpi": {
+      "type": "string",
+      "description": "Optional KPI key: subscribers, net_adds, users, customers, members, arpu, churn, net_revenue_retention, arr, bookings, backlog, rpo, book_to_bill, gmv, transactions, same_store_sales, average_ticket, store_count, deliveries, units, volume, production, realized_price, occupancy, revpar, adr, load_factor, capacity, traffic, unit_revenue, unit_cost, aum, net_flows, net_interest_margin, combined_ratio, medical_care_ratio, operating_ratio, other."
+     },
+     "since": {
+      "type": "string",
+      "description": "Only values from releases filed on or after this date (YYYY-MM-DD)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Max rows, 1–100 (default 40)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_form_d_offerings",
+   "description": "U.S. private offerings from SEC Form D filings (2009 onward), refined by Palanor. One row per offering, as of its latest filing: issuer, CIK, state, industry group, exemptions, amounts offered and sold, investors, whether it is venture-like, the SEC filing link, and Palanor's AI classification of the issuer (class, method, confidence, evidence URL). Newest filing first. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Latest filing on or after, YYYY-MM-DD."
+     },
+     "to": {
+      "type": "string",
+      "description": "Latest filing on or before, YYYY-MM-DD."
+     },
+     "state": {
+      "type": "string",
+      "description": "Issuer state or country code as filed, e.g. CA."
+     },
+     "industry_group": {
+      "type": "string",
+      "description": "Form D industry group, e.g. \"Other Technology\", \"Biotechnology\"."
+     },
+     "min_amount": {
+      "type": "number",
+      "description": "Minimum total amount sold, USD."
+     },
+     "ai": {
+      "type": "boolean",
+      "description": "true: only issuers Palanor classes as AI; false: only issuers classed not AI."
+     },
+     "cik": {
+      "type": "string",
+      "description": "Issuer CIK."
+     },
+     "venture_only": {
+      "type": "boolean",
+      "description": "Only venture-like offerings (private U.S. operating companies selling equity under Rule 506)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–100 (default 25)."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Rows to skip (default 0)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_form_d_issuer",
+   "description": "One Form D issuer by CIK: its offerings (latest filing each), every Form D and D/A it filed with the amount each added, and Palanor's AI classification with method, confidence, a one-line description of what the company does and the evidence URL. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "cik": {
+      "type": "string",
+      "description": "Issuer CIK (required)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Offerings to return, 1–200 (default 50)."
+     }
+    },
+    "required": [
+     "cik"
+    ]
+   }
+  },
+  {
+   "name": "palanor_get_ai_venture_share",
+   "description": "The AI share of U.S. venture-like money raised, from SEC Form D filings: per quarter or year, for the U.S. or one state, the money raised, the amount raised by companies Palanor classes as AI, their share, and the same for issuers raising $30 million or more. 2015 onward.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "period": {
+      "type": "string",
+      "enum": [
+       "quarter",
+       "year"
+      ],
+      "description": "Default quarter."
+     },
+     "state": {
+      "type": "string",
+      "description": "US (default) or a two-letter U.S. state code."
+     },
+     "from": {
+      "type": "string",
+      "description": "Periods starting on or after, YYYY-MM-DD."
+     },
+     "to": {
+      "type": "string",
+      "description": "Periods starting on or before, YYYY-MM-DD."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_advisers",
+   "description": "U.S. SEC-registered investment advisers and exempt reporting advisers (venture capital and private fund advisers), from the SEC's monthly adviser lists, refined by Palanor: CRD, name, state, regulatory assets under management, clients, private fund counts by type and gross assets, ERA exemption (venture capital or private fund), and the month first listed. Largest by RAUM first by default. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "state": {
+      "type": "string",
+      "description": "Main office state, two-letter code, e.g. NY."
+     },
+     "firm_type": {
+      "type": "string",
+      "enum": [
+       "registered",
+       "era"
+      ],
+      "description": "registered = SEC-registered; era = exempt reporting adviser."
+     },
+     "vc_only": {
+      "type": "boolean",
+      "description": "Only advisers exempt as advisers solely to venture capital funds (ERA Item 2.B(1))."
+     },
+     "min_raum": {
+      "type": "number",
+      "description": "Minimum regulatory assets under management, USD."
+     },
+     "has_private_funds": {
+      "type": "boolean",
+      "description": "Only advisers reporting at least one private fund (true) or none (false)."
+     },
+     "q": {
+      "type": "string",
+      "description": "Name contains."
+     },
+     "sort": {
+      "type": "string",
+      "enum": [
+       "raum",
+       "private_fund_gav",
+       "private_funds",
+       "name",
+       "first_seen"
+      ],
+      "description": "Default raum."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–100 (default 25)."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Rows to skip (default 0)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_adviser",
+   "description": "One investment adviser by CRD number: its latest Form ADV answers from the SEC lists, its private funds from Form ADV Schedule D (type, gross asset value, beneficial owners, auditors), and the Form D offerings of those funds. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "crd": {
+      "type": "string",
+      "description": "Adviser CRD number (required)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Private funds to return, 1–200 (default 50)."
+     }
+    },
+    "required": [
+     "crd"
+    ]
+   }
+  },
+  {
+   "name": "palanor_get_private_funds",
+   "description": "U.S.-adviser private funds from Form ADV Schedule D 7.B.(1) (SEC Form ADV data: FOIA files through 2024, adviserinfo.sec.gov monthly files after, filings through September 2026): fund ID, name, type (hedge, private equity, venture capital, real estate, securitized, liquidity, other), gross asset value, beneficial owners, minimum investment, auditors and Big Four flag, Form D file numbers, adviser CRD. Largest first. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "fund_type": {
+      "type": "string",
+      "enum": [
+       "hedge",
+       "private_equity",
+       "venture_capital",
+       "real_estate",
+       "securitized",
+       "liquidity",
+       "other"
+      ]
+     },
+     "crd": {
+      "type": "string",
+      "description": "Adviser CRD number."
+     },
+     "min_gav": {
+      "type": "number",
+      "description": "Minimum gross asset value, USD."
+     },
+     "big4": {
+      "type": "string",
+      "description": "true, false, or one of pwc, deloitte, ey, kpmg."
+     },
+     "auditor": {
+      "type": "string",
+      "description": "Auditing firm name contains."
+     },
+     "q": {
+      "type": "string",
+      "description": "Fund name contains."
+     },
+     "has_form_d": {
+      "type": "boolean",
+      "description": "Only funds with (true) or without (false) a reported Form D file number."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–100 (default 25)."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Rows to skip (default 0)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_private_fund_stats",
+   "description": "Private fund aggregates: Palanor's Form ADV Schedule D totals by fiscal year and fund type (fund count, gross assets, median fund size, beneficial owners, Big Four auditor share, 2012 onward), and the SEC's quarterly Private Fund Statistics from Form PF (fund counts, gross and net assets, borrowings as a share of gross assets, 2013 onward).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "fund_type": {
+      "type": "string",
+      "description": "total or one of hedge, private_equity, venture_capital, real_estate, securitized, liquidity, other."
+     },
+     "from": {
+      "type": "string",
+      "description": "Periods ending on or after, YYYY-MM-DD."
+     },
+     "to": {
+      "type": "string",
+      "description": "Periods ending on or before, YYYY-MM-DD."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_deals",
+   "description": "Deal filings by every SEC registrant, newest first: 8-K Item 1.01 (material definitive agreement, including merger agreements), 8-K Item 2.01 (completed acquisition or disposition), Schedule TO-T (third-party tender offer) and Schedule 13E-3 (going-private transaction). Each row: accession, form, filing date, company (CIK, name, SIC), filer for schedules, items, event types and the SEC filing link. 8-Ks from September 2004, schedules from 2001. Monthly totals are the deals.* signals. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Filed on or after, YYYY-MM-DD."
+     },
+     "to": {
+      "type": "string",
+      "description": "Filed on or before, YYYY-MM-DD."
+     },
+     "type": {
+      "type": "string",
+      "description": "One or more of material_agreement, acquisition_completed, tender_offer, going_private, comma-separated."
+     },
+     "cik": {
+      "type": "string",
+      "description": "A company or filer CIK."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–100 (default 25)."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Rows to skip (default 0)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_find_entities",
+   "description": "Find companies, funds and advisers in the Palanor company graph, which joins SEC CIK, ticker, GLEIF LEI, Wikidata QID, Form ADV CRD, USAspending UEI, Companies House number and USPTO assignee into one entity per legal entity. Search by name (q) or by any identifier (id=scheme:value, e.g. ticker:AAPL, lei:…, cik:320193). Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "Name contains (legal form ignored), at least three letters."
+     },
+     "id": {
+      "type": "string",
+      "description": "An identifier: cik:…, lei:…, ticker:…, crd:…, uei:…, qid:Q…, gb_ch:…, or a bare LEI or CIK."
+     },
+     "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country of the legal address, e.g. US or GB."
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "company",
+       "fund",
+       "adviser",
+       "government",
+       "other"
+      ]
+     },
+     "has_lei": {
+      "type": "boolean",
+      "description": "Only entities with (true) or without (false) an LEI."
+     },
+     "listed": {
+      "type": "boolean",
+      "description": "Only entities with an SEC-listed ticker."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–100 (default 25)."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Rows to skip (default 0)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_entity",
+   "description": "One entity in the Palanor company graph by any identifier (cik:…, lei:…, ticker:…, crd:…, uei:…, qid:Q…, gb_ch:…): its attributes, every identifier with the source, method, confidence and evidence of the match, candidate matches Palanor did not merge, and its ownership tree from GLEIF Level 2 (parents up to the ultimate parent, children, fund manager and umbrella links). Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "An identifier (required)."
+     },
+     "children_limit": {
+      "type": "number",
+      "description": "Children to list, 1–500 (default 50)."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "palanor_ownership",
+   "description": "Who owns a U.S. company, straight from SEC filings: the largest institutional holders from Form 13F with quarter-over-quarter change (new, added, trimmed, exited — split-adjusted), the quarter summary, and current owners of more than 5% from Schedules 13D (activist/non-passive) and 13G (passive). Every row carries its SEC accession number and filing URL. S&P 500 coverage, eight-plus quarters.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Ticker (e.g. AAPL, BRK.B) or SEC CIK of a company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400."
+     },
+     "period": {
+      "type": "string",
+      "description": "Optional 13F quarter end, YYYY-MM-DD (default: newest quarter past its 45-day filing deadline)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Holders to return, 1–100 (default 20)."
+     },
+     "hedge_funds_only": {
+      "type": "boolean",
+      "description": "Only managers on Palanor's curated hedge-fund list."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_insider_transactions",
+   "description": "A company's insider transactions from SEC Forms 3, 4 and 5: insider, role, date, transaction code (P open-market purchase, S sale, A award, M exercise, F tax withholding …), shares, price, holdings after, direct/indirect, and the Rule 10b5-1 plan flag, each with its filing URL.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Ticker (e.g. AAPL, BRK.B) or SEC CIK of a company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400."
+     },
+     "since": {
+      "type": "string",
+      "description": "Transaction-date floor, YYYY-MM-DD (default: one year ago)."
+     },
+     "codes": {
+      "type": "string",
+      "description": "Comma-separated transaction codes, e.g. \"P,S\" for open-market trades only."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–200 (default 50)."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_executive_pay",
+   "description": "A company's CEO and executive pay versus performance by fiscal year, from the XBRL-tagged pay-versus-performance table in its SEC proxy statements (DEF 14A): CEO total pay (Summary Compensation Table), compensation actually paid, other executives' averages, total shareholder return, peer TSR and net income.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Ticker (e.g. AAPL, BRK.B) or SEC CIK of a company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_fails_to_deliver",
+   "description": "A company's SEC fails-to-deliver record: daily aggregate settlement-fail balances, whether a persistent streak (5+ consecutive settlement days) is running, and the latest fail as a share of shares outstanding. This is a settlement statistic and NOT short interest — say so when you cite it.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Ticker (e.g. AAPL, BRK.B) or SEC CIK of a company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400."
+     },
+     "since": {
+      "type": "string",
+      "description": "Settlement-date floor, YYYY-MM-DD (default: 90 days ago)."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_company_contracts",
+   "description": "Federal prime contracts (or grants) to one company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400 from USAspending.gov, matched by parent recipient: monthly obligations, top awarding agencies over the trailing year, and new awards of $10M or more. Months inside the ~90-day FPDS reporting lag are omitted, never zero. Every row carries provenance and a source URL.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "S&P 500 ticker (e.g. LMT, GOOGL) or SEC CIK."
+     },
+     "family": {
+      "type": "string",
+      "enum": [
+       "contracts",
+       "grants"
+      ],
+      "description": "Award family (default contracts)."
+     },
+     "months": {
+      "type": "number",
+      "description": "Months of history, 1–120 (default 24)."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_company_lobbying",
+   "description": "Federal lobbying by one company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400 from Lobbying Disclosure Act filings (LDA.gov): quarterly spend, the general issues lobbied, outside firms, and lobbyists who previously held covered government positions (the revolving door). Every row carries provenance and a source URL.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "S&P 500 ticker (e.g. LMT, GOOGL) or SEC CIK."
+     },
+     "quarters": {
+      "type": "number",
+      "description": "Quarters of history, 1–40 (default 8)."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_company_patents",
+   "description": "U.S. utility patents for one company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400 from the USPTO: grants and published applications per quarter, CPC technology-section mix, the AI share (documented CPC set), and recent AI patent grants. Every row carries provenance and a source URL.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "S&P 500 ticker (e.g. LMT, GOOGL) or SEC CIK."
+     },
+     "quarters": {
+      "type": "number",
+      "description": "Quarters of history, 1–40 (default 8)."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_congress_holdings",
+   "description": "What members of Congress hold, from their e-filed annual financial disclosure reports (2016 on), as aggregates. With a ticker: for each report year, how many members (House and Senate) listed that S&P 500 company's shares or options, the number of positions, and the summed filed value ranges and range midpoint. Without a ticker: each year's share of members holding any S&P 500 stock, and sector exposure by range midpoint for one year. Values are filed RANGES; midpoints are estimates. No member rankings or net-worth figures.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "S&P 500 ticker, e.g. NVDA. Omit for the all-company view."
+     },
+     "year": {
+      "type": "number",
+      "description": "Report year for the sector view (default: the latest complete year)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_company_pacs",
+   "description": "A company's corporate PAC(s) from FEC filings, committee level only: per two-year cycle, receipts, disbursements, contributions to federal candidates (split by the candidate's party), to party committees and to other committees, and cash on hand, plus the largest candidate recipients in the latest cycle. S&P 500 companies whose PAC's connected organization is the company. No individual contributors. Every response carries provenance.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "S&P 500 ticker (e.g. LMT) or SEC CIK."
+     },
+     "cycles": {
+      "type": "number",
+      "description": "Cycles of history, 1–10 (default 4)."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_release_calendar",
+   "description": "The US economic release calendar: when BLS, BEA, Census, the Federal Reserve Board (FOMC, G.17, G.19, H.8, H.15), EIA, DOL and the Treasury (coupon auctions) publish, taken from each agency's own schedule. Each release lists the Palanor lattice signals it updates, the prior value and, once the print lands, the actual value and where it sits in the series' own five-year record. No consensus forecasts. Numbers from series whose upstream license is display-only are withheld here and shown on palanor.com/calendar.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "YYYY-MM-DD (ET). Default: today."
+     },
+     "to": {
+      "type": "string",
+      "description": "YYYY-MM-DD (ET). Default: 14 days after from. Max span 120 days."
+     },
+     "importance": {
+      "type": "number",
+      "description": "1 = only the majors (jobs, CPI, GDP, PCE, retail sales, FOMC); 2 adds widely watched releases; 3 = everything (default 2)."
+     },
+     "source": {
+      "type": "string",
+      "enum": [
+       "BLS",
+       "BEA",
+       "Census",
+       "Federal Reserve",
+       "EIA",
+       "DOL",
+       "U.S. Treasury"
+      ],
+      "description": "Optional agency filter."
+     },
+     "signal": {
+      "type": "string",
+      "description": "Optional lattice signal slug (e.g. fred_cpi): only releases that update it."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_industry",
+   "description": "The size of a US industry by NAICS code, as published by the Census Bureau (Economic Census receipts, County Business Patterns, Quarterly Services Survey revenue, Monthly and Annual Retail Trade sales), BEA (GDP by Industry value added) and BLS (QCEW private employment, establishments and wages). Pass `naics` (2- to 6-digit, sectors as 31-33 / 44-45 / 48-49) for the latest figure per source and measure plus the series; or `query` (e.g. \"hospitals\", \"software\") to find codes. No estimates: withheld figures are status 'suppressed' with a null value and unpublished periods have no row. Public domain; every result carries provenance.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "naics": {
+      "type": "string",
+      "description": "NAICS code, e.g. 5415, 622, 31-33."
+     },
+     "query": {
+      "type": "string",
+      "description": "Search industry titles when you don't know the code."
+     },
+     "measure": {
+      "type": "string",
+      "description": "Optional: receipts, revenue, revenue_sa, sales, sales_sa, value_added, value_added_saar, employment, establishments, firms, annual_payroll, quarterly_wages."
+     },
+     "source": {
+      "type": "string",
+      "description": "Optional: census_econ_census, census_cbp, census_qss, census_mrts, census_arts, bea_gdp_by_industry, bls_qcew."
+     },
+     "since": {
+      "type": "string",
+      "description": "Optional YYYY-MM-DD: periods ending on or after this date."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Max series rows, 1–500 (default 120)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_corporate_events",
+   "description": "Material corporate events from SEC Form 8-K filings, by item code: cybersecurity incidents (1.05), restatements / non-reliance (4.02), auditor changes (4.01), bankruptcy (1.03), completed acquisitions or sales (2.01), restructuring costs (2.05), impairments (2.06), delisting notices (3.01), material agreements (1.01/1.02), director and officer changes (5.02, with the people and roles named where the filing states them) and shareholder votes (5.07). For one company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400, or across all of them when no ticker is given. Each filing carries its accession number and SEC link. Coverage from Sept 2023.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Optional ticker (e.g. AAPL) or SEC CIK of a covered company. Omit for the most recent events across all of them."
+     },
+     "items": {
+      "type": "string",
+      "description": "Optional comma-separated item codes or categories, e.g. \"1.05,4.02\" or \"cybersecurity_incident\". Default: all notable items."
+     },
+     "since": {
+      "type": "string",
+      "description": "Filing-date floor, YYYY-MM-DD (default: one year ago)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–200 (default 50)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_layoff_tracker",
+   "description": "WARN Act notices (employer, place, workers, notice date, effective date, layoff or closure, the state's source) from the U.S. states whose terms allow redistribution, linked to listed companies and to their 8-K Item 2.05 (exit or disposal) filings, with a summary (notices and workers in the last 7 and 30 days, workers due in the next 90). Give a ticker for one company, or filter by state, industry, status (announced = first separations still ahead) and minimum workers. WARN notices cover layoffs above the federal thresholds in the listed states only; they are not all layoffs.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Listed company ticker, e.g. INTC."
+     },
+     "state": {
+      "type": "string",
+      "description": "Comma-separated two-letter states, e.g. \"CA,NJ\"."
+     },
+     "industry": {
+      "type": "string",
+      "description": "NAICS sector name, e.g. \"Manufacturing\" (as the state lists it or from the company's SEC SIC code; see industry_basis)."
+     },
+     "reason": {
+      "type": "string",
+      "description": "Main stated reason: closure, relocation, restructuring, ai_automation, lost_contract, demand, merger, distress, tariffs_trade, funding_cut, temporary, other, not_stated. Only what a source states; most notices are not_stated."
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "announced",
+       "effective"
+      ],
+      "description": "announced = effective date still ahead."
+     },
+     "min": {
+      "type": "number",
+      "description": "Smallest notice, in workers."
+     },
+     "from": {
+      "type": "string",
+      "description": "Notice date floor, YYYY-MM-DD."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–200 (default 50)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_tracker",
+   "description": "Palanor Trackers: event records from public filings. tracker = fda (PDUFA dates companies stated in SEC filings and releases, Drugs@FDA approvals, FDA complete response letters), deals (8-K merger agreements and completions, tender offers, going-private, FTC early terminations), ipos (S-1/F-1, amendments, pricings, withdrawals, Reg A), raises (Form D raises, new VC/PE funds, first-time managers; AI = Palanor classification), insiders (insider buying/selling clusters: 2+ insiders, same direction, 14 days; Schedule 13D stakes) or distress (8-K bankruptcy, acceleration, impairment; going-concern doubt; credit amendments). Also executive-changes (CEO/CFO/board-chair departures and appointments from 8-K Item 5.02), sanctions (OFAC, UK and EU list additions and removals; UK and EU individuals' names withheld), risk-events (recalls, EPA cases, CFPB complaint spikes, OSHA inspections, Wage and Hour cases), federal-contracts (SAM.gov opportunities; kind=awards for USAspending awards of $10M+), clinical-trials (industry trial starts, phase advances and stops from ClinicalTrials.gov): for these give filters. Give a ticker for one company, or filter by kind, status, flag, min ($ millions) and dates. Each row has its source link. For WARN layoff notices use palanor_layoff_tracker. Facts only: no forecasts, no advice.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "tracker": {
+      "type": "string",
+      "enum": [
+       "fda",
+       "deals",
+       "ipos",
+       "raises",
+       "insiders",
+       "distress",
+       "executive-changes",
+       "sanctions",
+       "risk-events",
+       "federal-contracts",
+       "clinical-trials"
+      ]
+     },
+     "ticker": {
+      "type": "string",
+      "description": "Listed company ticker, e.g. MRNA."
+     },
+     "kind": {
+      "type": "string",
+      "description": "Comma-separated row kinds, e.g. \"pdufa\" or \"buy_cluster\"."
+     },
+     "status": {
+      "type": "string",
+      "description": "fda: upcoming | decided | passed; ipos: filed | amended | priced | withdrawn | qualified."
+     },
+     "flag": {
+      "type": "string",
+      "description": "e.g. novel, spac, ai, no_10b5_1."
+     },
+     "min": {
+      "type": "number",
+      "description": "Smallest size, $ millions (deals, ipos, raises, insiders)."
+     },
+     "from": {
+      "type": "string",
+      "description": "Date floor, YYYY-MM-DD."
+     },
+     "to": {
+      "type": "string",
+      "description": "Date ceiling, YYYY-MM-DD."
+     },
+     "filters": {
+      "type": "string",
+      "description": "executive-changes, sanctions, risk-events, federal-contracts, clinical-trials: the tracker's query string, e.g. \"role=ceo&action=departure\", \"country=IRN\", \"kind=awards&agency=dod&min=100000000\"."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–200 (default 50)."
+     }
+    },
+    "required": [
+     "tracker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_company_attention",
+   "description": "How much the public is looking at a company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400: daily views of its English Wikipedia article (Wikimedia, user agents), matched through Wikidata by SEC CIK or ticker. Returns the 7-day average, its percentile against every 7-day stretch since January 2023, the ratio to the prior year, the busiest day in the last year, and the daily series. Pass `ticker` or `cik`. CC0 data; every result carries provenance. Attention is not sentiment: it says people are looking, not why.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "S&P 500 ticker, e.g. AAPL."
+     },
+     "cik": {
+      "type": "string",
+      "description": "SEC CIK, e.g. 320193."
+     },
+     "since": {
+      "type": "string",
+      "description": "Optional YYYY-MM-DD: first day of the daily series (default one year back)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_company_hiring",
+   "description": "Hiring filings for one company in the S&P 500, Nasdaq-100, Russell 1000 and S&P MidCap 400 from U.S. Department of Labor disclosure data: certified H-1B Labor Condition Applications per quarter (intent to hire or retain a skilled foreign worker, not hires), positions, top job titles and occupations, median offered wage, primary worksite states, and PERM green-card labor certifications. Employer names are matched to the company and its subsidiaries exactly; unconfirmed names are excluded. Every quarter carries provenance.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "S&P 500 ticker (e.g. MSFT, AMZN) or SEC CIK."
+     },
+     "quarters": {
+      "type": "number",
+      "description": "Quarters of history, 1–40 (default 8)."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   }
+  },
+  {
+   "name": "palanor_get_global_yields",
+   "description": "Government bond yields across ~40 economies in one call: the latest 10-year yield per country (daily for the UK, Japan and Australia from the Bank of England, Japan's Ministry of Finance and the RBA; monthly averages from the OECD elsewhere), a short tenor where published, the change over a year, and derived spreads (Italy–Germany, France–Germany, Japan and Australia 2s10s, the median across 23 advanced economies). Values in percent per year. Every value carries provenance; full history per series via palanor_get_signal with the returned slug.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "region": {
+      "type": "string",
+      "enum": [
+       "Americas",
+       "Europe",
+       "Asia-Pacific",
+       "Middle East & Africa"
+      ],
+      "description": "Optional region filter."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_commodity_prices",
+   "description": "World Bank monthly commodity prices (the Pink Sheet, CC BY 4.0): 44 commodities (energy, cocoa and coffee, vegetable oils, rice, sugar, meat, cotton, rubber, fertilizers, aluminium, iron ore, tin, gold, platinum …) and the 9 World Bank price indices (2010 = 100). Latest monthly average in nominal US dollars, the change over a year, unit and provenance. Full history via palanor_get_signal.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "group": {
+      "type": "string",
+      "enum": [
+       "index",
+       "energy",
+       "beverages",
+       "oils-meals",
+       "grains",
+       "other-food",
+       "raw-materials",
+       "fertilizers",
+       "metals",
+       "precious-metals"
+      ],
+      "description": "Optional group filter; \"index\" returns only the World Bank indices."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_world_share_prices",
+   "description": "Stock markets around the world in one call: the OECD monthly share price index (2015 = 100, CC BY 4.0) for 47 economies and the euro area with its change over a year (local currency, price only), plus Palanor's daily composites of every company listed in Taiwan (cap-weighted from the Taiwan Stock Exchange and Taipei Exchange open data, 21 Oct 2026 = 100) once published. Not exchange index levels (those are licensed by their owners). Full history per series via palanor_get_signal with the slug.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "region": {
+      "type": "string",
+      "enum": [
+       "Americas",
+       "Europe",
+       "Asia-Pacific",
+       "Middle East & Africa"
+      ],
+      "description": "Optional region filter."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_embed_code",
+   "description": "Get the embed code for a live Palanor chart of one signal or Custom Index: an iframe that renders the series with its source line, license and a link back to its methodology page. Use it when a user wants to put a Palanor chart on a web page, blog post or dashboard. Only charts whose data may be redistributed embed (public-domain and openly licensed sources, Palanor-derived series, public Custom Indices); market prices never do, and the result says why when a chart cannot be embedded.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "signal": {
+      "type": "string",
+      "description": "Signal slug (e.g. rates.spread_2y10y). Pass this or `index`."
+     },
+     "index": {
+      "type": "string",
+      "description": "Custom Index slug, with or without the palanor_ prefix (e.g. consumer_health)."
+     },
+     "range": {
+      "type": "string",
+      "enum": [
+       "1y",
+       "2y",
+       "5y",
+       "10y",
+       "max"
+      ],
+      "description": "Time window shown (default 5y)."
+     },
+     "theme": {
+      "type": "string",
+      "enum": [
+       "auto",
+       "light",
+       "dark"
+      ],
+      "description": "Colour theme; auto follows the reader's setting (default)."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_create_chart",
+   "description": "Render a Palanor Studio chart (PNG) of 1–4 public signals — the same brand-locked chart, verification and licence checks the Studio uses. Asynchronous: returns a job id; call palanor_get_chart until status is \"done\" (typically under a minute), then use the image URL. Numbers are never typed: omit `claim` for a default, or write one with tokens such as \"{{a.last|1}}\" (a = first signal, b = second…; also .first, .min, .max, .change, .as_of, .first_x, .last_x). A digit written into `claim` fails verification. Only redistributable signals chart; market prices (equities, ETFs, crypto, FX) do not. Allowance: Free 10 a month, Pro 25 a day, Enterprise 200 a day.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "signals": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "description": "Signals to plot, in order (a, b, c, d).",
+      "items": {
+       "type": "object",
+       "properties": {
+        "slug": {
+         "type": "string",
+         "description": "Signal slug, e.g. rates.spread_2y10y"
+        },
+        "label": {
+         "type": "string",
+         "description": "Legend label (default: the signal name)."
+        },
+        "transform": {
+         "type": "string",
+         "enum": [
+          "level",
+          "change_since",
+          "pct_change_since",
+          "index_100",
+          "yoy_pct",
+          "yoy_change",
+          "growth_10k",
+          "compound_10k",
+          "sum_12m",
+          "hours_to_minutes",
+          "minutes_to_hours",
+          "running_max",
+          "running_mean",
+          "period_change"
+         ],
+         "description": "Default level for one signal, index_100 for several."
+        },
+        "agg": {
+         "type": "string",
+         "enum": [
+          "raw",
+          "weekly_last",
+          "weekly_mean",
+          "monthly_mean",
+          "monthly_last",
+          "quarterly_mean",
+          "quarterly_last",
+          "yearly_mean",
+          "yearly_last",
+          "yearly_sum"
+         ],
+         "description": "Bucketing (default monthly_last)."
+        },
+        "decimals": {
+         "type": "integer",
+         "minimum": 0,
+         "maximum": 4
+        }
+       },
+       "required": [
+        "slug"
+       ]
+      }
+     },
+     "from": {
+      "type": "string",
+      "description": "YYYY-MM-DD. Default five years back."
+     },
+     "to": {
+      "type": "string",
+      "description": "YYYY-MM-DD. Default latest."
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "line",
+       "change_since_line",
+       "small_multiples"
+      ]
+     },
+     "claim": {
+      "type": "string",
+      "description": "The headline sentence, numbers as tokens only."
+     },
+     "does_not_say": {
+      "type": "string",
+      "description": "Finishes \"What it does not say: …\"."
+     },
+     "formats": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "enum": [
+        "single",
+        "square"
+       ]
+      },
+      "description": "single (default) and/or square."
+     }
+    },
+    "required": [
+     "signals"
+    ]
+   }
+  },
+  {
+   "name": "palanor_get_chart",
+   "description": "Status of a chart started with palanor_create_chart; checking does not count against your monthly requests. When status is \"done\" it returns the PNG URL(s), the resolved headline, the licence attribution lines to print with it, and the values charted.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Job id from palanor_create_chart."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "palanor_get_observations",
+   "description": "A signal's observations between two dates from the Palanor lattice, oldest first, up to 1,000 per call (page with `offset` while `pagination.has_more`). Use it for a series over a set window, e.g. the 2y10y Treasury spread since 2020; palanor_get_signal gives the latest value and its context. Every result carries the provenance block of the signal's source.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Signal slug (from palanor_list_signals)."
+     },
+     "start": {
+      "type": "string",
+      "description": "Optional YYYY-MM-DD, inclusive."
+     },
+     "end": {
+      "type": "string",
+      "description": "Optional YYYY-MM-DD, inclusive."
+     },
+     "order": {
+      "type": "string",
+      "enum": [
+       "asc",
+       "desc"
+      ],
+      "description": "asc (default) or desc."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–1000 (default 500)."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Rows to skip (default 0)."
+     },
+     "vintage": {
+      "type": "string",
+      "enum": [
+       "latest",
+       "first"
+      ],
+      "description": "latest (default): values as revised today. first: each observation as first published (available only where licensed for redistribution)."
+     },
+     "freq": {
+      "type": "string",
+      "enum": [
+       "week",
+       "month",
+       "quarter",
+       "year"
+      ],
+      "description": "Optional: one value per period, dated the period's last day. Omit for every observation."
+     },
+     "agg": {
+      "type": "string",
+      "enum": [
+       "last",
+       "first",
+       "mean",
+       "sum",
+       "min",
+       "max"
+      ],
+      "description": "How a period becomes one value (default last: the closing reading)."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   }
+  },
+  {
+   "name": "palanor_get_foresight",
+   "description": "Palanor Foresight™ for one signal: the projected value at a horizon with a band that holds about two in three outcomes, and the projected path. The horizon depends on the series: 30 days for daily to monthly data, 1 year for quarterly, 3 years for annual. `method` is the disclosure printed under Palanor charts: the blend and the related signals it reads. A source's own published forecast is not projected again. Pro and Enterprise keys. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Signal slug (from palanor_search_signals or palanor_list_signals)."
+     },
+     "horizon": {
+      "type": "string",
+      "description": "Optional: days (\"30\"), a span (\"30d\", \"12w\", \"6m\", \"1y\") or a date (YYYY-MM-DD). Default: the full horizon."
+     },
+     "path": {
+      "type": "boolean",
+      "description": "Include the whole projected path (default false: the value at the horizon only)."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   }
+  },
+  {
+   "name": "palanor_search_signals",
+   "description": "Find signals in the Palanor lattice by meaning and keywords, e.g. \"yield curve\", \"used car prices\", \"Canada unemployment\". Returns only signals the API serves, each with its slug, latest value and source, so every slug works in palanor_get_signal and palanor_get_observations.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "What to look for (two characters or more)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Results, 1–50 (default 10)."
+     }
+    },
+    "required": [
+     "q"
+    ]
+   }
+  },
+  {
+   "name": "palanor_get_latest",
+   "description": "The latest reading of up to 100 signals in one call, each with its provenance. A slug the API does not serve comes back with an error instead of a value. Costs one request per ten slugs, rounded up.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "slugs": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 100,
+      "description": "Signal slugs."
+     }
+    },
+    "required": [
+     "slugs"
+    ]
+   }
+  },
+  {
+   "name": "palanor_list_screens",
+   "description": "The saved Entity Screener screens this key's owner can run: their own, those shared with their organization, and Palanor's house screens. Ids feed palanor_run_screen.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "palanor_run_screen",
+   "description": "Run a saved Entity Screener screen (companies, investors, funds or deals from SEC Form D, EDGAR, Form ADV, USPTO and USAspending) with its saved filters and columns. Each row links its primary-source filing and its Palanor page. Adviser and fund rows carry the BrokerCheck notice, which must travel with them. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Saved screen id (from palanor_list_screens)."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Rows, 1–1000 (default 100)."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Rows to skip (default 0)."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "palanor_search_documents",
+   "description": "Search SEC filings and Federal Reserve publications by meaning and get the matching passages, verbatim: S&P 500 earnings releases (8-K Exhibit 99), 10-K Item 1A risk factors, 10-Q Item 2 MD&A, other 8-K exhibits, the Beige Book, FOMC statements and minutes, and Fed speeches. Each passage comes with company, date, document type, a link that opens it highlighted in the Palanor reader, and provenance. Public-domain documents only; earnings call transcripts are not included.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "What to find, in plain words (e.g. \"data center capex outlook\", \"tariff cost headwinds\")."
+     },
+     "ticker": {
+      "type": "string",
+      "description": "Optional S&P 500 ticker, or FED for Federal Reserve documents."
+     },
+     "since": {
+      "type": "string",
+      "description": "Optional earliest date, YYYY-MM-DD."
+     },
+     "until": {
+      "type": "string",
+      "description": "Optional latest date, YYYY-MM-DD."
+     },
+     "doc_types": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "enum": [
+        "release",
+        "risk_factors",
+        "mda",
+        "other_8k",
+        "fed_beige_book",
+        "fed_speech",
+        "fomc_statement",
+        "fomc_minutes"
+       ]
+      },
+      "description": "Optional document types. release = earnings release, risk_factors = 10-K Item 1A, mda = 10-Q MD&A."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Passages to return, 1–20 (default 8)."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  },
+  {
+   "name": "palanor_news_search",
+   "description": "Search the Palanor Wire: stories Palanor's AI newsroom wrote and checked (Flash, Developing, Daily, Deep and From the record), newest first, with each story's tier, byline, Story Standard total, outlet count and corrections. Free keys see headlines and deks an hour after publishing; Pro sees every story in real time. Stories are written by Palanor’s AI newsroom and checked by code and a second AI before publishing (palanor.com/news/standards); cite them as Palanor Wire and link the story.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "Words in the headline or dek."
+     },
+     "ticker": {
+      "type": "string",
+      "description": "A ticker the story names, e.g. NVDA."
+     },
+     "person": {
+      "type": "string",
+      "description": "A person entity id (from palanor_find_entities)."
+     },
+     "place": {
+      "type": "string",
+      "description": "A place key, e.g. country:USA or state:ca."
+     },
+     "signal": {
+      "type": "string",
+      "description": "A signal slug the story is linked to."
+     },
+     "beat": {
+      "type": "string",
+      "description": "A beat key, e.g. markets, ai, energy, politics."
+     },
+     "tier": {
+      "type": "string",
+      "description": "flash, developing, daily, deep or finding (From the record); comma-separated for several."
+     },
+     "min_outlets": {
+      "type": "number",
+      "description": "At least this many outlets confirmed the story."
+     },
+     "min_grade": {
+      "type": "number",
+      "description": "Story Standard total at least this (0–100; the bar is 50)."
+     },
+     "since": {
+      "type": "string",
+      "description": "ISO date or time: published at or after."
+     },
+     "until": {
+      "type": "string",
+      "description": "ISO date or time: published at or before."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Stories to return (Free ≤ 25, Pro ≤ 100). Default 25."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "next_cursor from the previous call."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_news_get",
+   "description": "One Palanor Wire story by id or slug: with Pro, the full text (markdown with [n] footnotes into its sources), the outlets and primary records that confirmed it (publisher and link only), Palanor readings behind it, entities, Story Standard grades, corrections, timeline and what to watch. Stories are written by Palanor’s AI newsroom and checked by code and a second AI before publishing (palanor.com/news/standards); cite them as Palanor Wire and link the story.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Story id or slug (from palanor_news_search)."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "palanor_news_events",
+   "description": "Story clusters in Palanor’s newsroom, published or not: heat, tier, outlet counts, first and last seen, entities and linked signals, with Palanor’s headline when a story was published and the sources by publisher and link only. Use it to see what is building before a story is written. Requires a Pro or Enterprise key.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "Words in the headline or dek."
+     },
+     "beat": {
+      "type": "string",
+      "description": "A beat key, e.g. markets, ai, energy, politics."
+     },
+     "signal": {
+      "type": "string",
+      "description": "A signal slug the story is linked to."
+     },
+     "min_outlets": {
+      "type": "number",
+      "description": "At least this many outlets confirmed the story."
+     },
+     "min_heat": {
+      "type": "number",
+      "description": "Heat at least this (0–100)."
+     },
+     "since": {
+      "type": "string",
+      "description": "ISO date or time: active since."
+     },
+     "limit": {
+      "type": "number",
+      "description": "Stories to return (Free ≤ 25, Pro ≤ 100). Default 25."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "next_cursor from the previous call."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_org_news",
+   "description": "Your organization's ranked news (headless Context News): each item's score and why, its watchlist matches and priority source, Palanor's note for your organization, the publisher and link (headline where the publisher allows it), and Palanor's own story on it. Needs an organization data key with the news API turned on for your organization; personal keys and connected apps are refused.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number",
+      "description": "Items (≤ 100). Default 25."
+     },
+     "offset": {
+      "type": "number",
+      "description": "Skip this many ranked items."
+     },
+     "min_score": {
+      "type": "number",
+      "description": "Score at least this (0–100)."
+     },
+     "must": {
+      "type": "boolean",
+      "description": "Only items that match a must-match watch term."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_org_edition",
+   "description": "Your organization's morning edition through the news API: the lead, every item with its \"For <Org>\" note and links to your scenarios, Futures and signals, the editor's note, and that day's CompanyCast episode (audio links signed for an hour). Needs an organization data key with the news API turned on.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "date": {
+      "type": "string",
+      "description": "YYYY-MM-DD. Default: the latest edition."
+     },
+     "lang": {
+      "type": "string",
+      "enum": [
+       "en",
+       "es"
+      ]
+     },
+     "org": {
+      "type": "string",
+      "description": "A child organization that shares its edition with yours."
+     }
+    }
+   }
+  },
+  {
+   "name": "palanor_get_edition",
+   "description": "Your organization's morning edition: the masthead, the editor's note, each story's headline, link and outlet credit, the \"For <Org>\" note, linked scenarios by name and public signals, and what could not be confirmed. Set include_companycast for the latest CompanyCast episode with one-hour audio links. Requires an organization key with the edition:read scope; personal keys are refused.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "date": {
+      "type": "string",
+      "description": "YYYY-MM-DD. Default: the latest edition."
+     },
+     "lang": {
+      "type": "string",
+      "enum": [
+       "en",
+       "es"
+      ],
+      "description": "Default: the organization's language."
+     },
+     "include_companycast": {
+      "type": "string",
+      "enum": [
+       "daily",
+       "weekly"
+      ],
+      "description": "Also return the latest CompanyCast episode of this edition."
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,237 @@
+{
+  "_about": "Example flows. build.py renders them into references/examples.md; flows.py runs every call against the live server. A value written as \"$<step>.<path>\" is taken from an earlier step's result.",
+  "flows": [
+    {
+      "id": "signal-standing",
+      "question": "Where does the yield curve stand right now?",
+      "steps": [
+        {
+          "call": "palanor_search_signals",
+          "args": {
+            "q": "2s10s Treasury spread",
+            "limit": 3
+          },
+          "expect": [
+            "results.0.slug",
+            "results.0.provenance.attribution"
+          ]
+        },
+        {
+          "call": "palanor_get_signal",
+          "args": {
+            "slug": "rates.spread_2y10y"
+          },
+          "expect": [
+            "latest_value",
+            "as_of",
+            "context.percentile",
+            "context.change.d90.abs",
+            "context.read",
+            "provenance.attribution",
+            "provenance.redistributable"
+          ]
+        }
+      ],
+      "look_at": "`latest_value` and `as_of`; `context.percentile` and `context.since`; `context.change.d90`; `context.read`; `provenance.attribution`.",
+      "answer": "The 10-year minus 2-year Treasury spread was 0.30 percentage points on Nov 17, 2026, down 0.16 points over the 90 days to that date. That sits at the 28th percentile of Palanor's record, which starts in January 1990; the record low was -1.08 on Jul 3, 2023.\n\nSource: U.S. Treasury, Bureau of the Fiscal Service (public domain), via Palanor (palanor.com/signals/rates.spread_2y10y)."
+    },
+    {
+      "id": "window",
+      "question": "How has U.S. unemployment moved, quarter by quarter, since the start of 2025?",
+      "steps": [
+        {
+          "call": "palanor_search_signals",
+          "args": {
+            "q": "U.S. unemployment rate",
+            "limit": 3
+          },
+          "expect": [
+            "results.0.slug"
+          ]
+        },
+        {
+          "call": "palanor_get_observations",
+          "args": {
+            "slug": "fred_unemployment",
+            "start": "2025-01-01",
+            "freq": "quarter",
+            "agg": "mean"
+          },
+          "expect": [
+            "observations.0.period",
+            "observations.0.count",
+            "provenance.attribution",
+            "pagination.has_more"
+          ]
+        }
+      ],
+      "look_at": "Each observation's `period`, `value` and `count`. 2025-Q4 has `count: 2` because the October 2025 reading was never published, and the current quarter has only the months published so far: say both.",
+      "answer": "Quarterly averages of the U.S. unemployment rate: 4.13% in 2025-Q1, 4.20% in Q2, 4.33% in Q3 and 4.45% in Q4 (two monthly readings; October 2025 was never published). In 2026: 4.33% in Q1, 4.27% in Q2 and 4.13% in Q3. 2026-Q4 so far has only October's reading, 4.1%.\n\nSource: U.S. Bureau of Labor Statistics (public domain), via Palanor."
+    },
+    {
+      "id": "latest-many",
+      "question": "Give me the latest unemployment rate, 2s10s spread and high-yield credit spread.",
+      "steps": [
+        {
+          "call": "palanor_get_latest",
+          "args": {
+            "slugs": [
+              "fred_unemployment",
+              "rates.spread_2y10y",
+              "fred_hy_oas"
+            ]
+          },
+          "expect": [
+            "data.0.latest.value",
+            "data.0.provenance.attribution",
+            "data.2.error"
+          ]
+        }
+      ],
+      "look_at": "Each entry's `latest.value` and `latest.observed_at`. `fred_hy_oas` comes back with `error`: it is display-only. Don't fill it in.",
+      "answer": "Unemployment rate: 4.1% for October 2026 (BLS). 2s10s Treasury spread: 0.30 points on Nov 17, 2026 (U.S. Treasury). The high-yield credit spread is display-only on palanor.com: Palanor's licence doesn't allow it to be passed on, so I can't give its value here.\n\nSources: U.S. Bureau of Labor Statistics (public domain); U.S. Treasury, Bureau of the Fiscal Service (public domain); via Palanor."
+    },
+    {
+      "id": "index",
+      "question": "What is Palanor's Capital Tightness index saying, and what drives it?",
+      "steps": [
+        {
+          "call": "palanor_list_indices",
+          "args": {},
+          "expect": [
+            "custom_indices.0.slug",
+            "custom_indices.0.methodology_url"
+          ]
+        },
+        {
+          "call": "palanor_get_index",
+          "args": {
+            "slug": "capital_tightness"
+          },
+          "expect": [
+            "latest.value",
+            "latest.computed_at",
+            "latest.components.0.contribution",
+            "index.long_form",
+            "provenance.attribution"
+          ]
+        }
+      ],
+      "look_at": "`latest.value` with `latest.computed_at`, and the reading bands in `index.long_form` (Methodology). Each component's `weight_used` and `contribution`. Components with `latest_value_withheld` are licensed inputs: name them and their weight, not their value.",
+      "answer": "Capital Tightness reads 50.7 on Palanor's 0 to 100 scale (computed Nov 18, 2026), right at the line between \"normal\" (25 to 50) and \"tightening\" (50 to 75). The biggest push toward tight is the high-yield credit spread (weight 0.24), a licensed input whose value is withheld. The biggest pull the other way is the Federal Reserve's balance sheet (weight 0.16, latest reading Nov 11, 2026).\n\nData: Palanor, Capital Tightness index (palanor.com/indices/capital_tightness)."
+    },
+    {
+      "id": "current",
+      "question": "Is remilitarization still building?",
+      "steps": [
+        {
+          "call": "palanor_list_currents",
+          "args": {},
+          "expect": [
+            "currents.0.slug"
+          ]
+        },
+        {
+          "call": "palanor_get_current",
+          "args": {
+            "slug": "remilitarization"
+          },
+          "expect": [
+            "current.momentum",
+            "current.belief_label",
+            "current.maturity",
+            "current.momentum_as_of",
+            "page_url"
+          ]
+        }
+      ],
+      "look_at": "`momentum` with `momentum_as_of`, `belief` and `belief_label`, `maturity` with `maturity_revised_at`, and `page_url`.",
+      "answer": "Palanor reads Remilitarization as fading in momentum as of Nov 17, 2026, with belief still forming (0.43 on a 0 to 1 scale) and maturity at \"adopting\" (last revised Sep 23, 2026).\n\nData: Palanor (palanor.com/currents/remilitarization)."
+    },
+    {
+      "id": "embed",
+      "question": "Can I put live charts of the 2s10s spread and the high-yield spread on my blog?",
+      "steps": [
+        {
+          "call": "palanor_get_embed_code",
+          "args": {
+            "signal": "rates.spread_2y10y",
+            "range": "5y"
+          },
+          "expect": [
+            "embeddable",
+            "iframe",
+            "provenance.attribution"
+          ]
+        },
+        {
+          "call": "palanor_get_embed_code",
+          "args": {
+            "signal": "fred_hy_oas"
+          },
+          "expect": [
+            "embeddable",
+            "reason"
+          ]
+        }
+      ],
+      "look_at": "`embeddable` and `iframe` for the first; `embeddable: false` and `reason` for the second.",
+      "answer": "Yes for the 2s10s spread: paste the iframe below. It shows the source line and licence itself. No for the high-yield spread: it is display-only on palanor.com, so it can't be embedded or exported.\n\n<iframe src=\"https://palanor.com/embed/signal/rates.spread_2y10y\" ...></iframe>"
+    },
+    {
+      "id": "chart",
+      "question": "Make me a chart of the 2s10s spread since 2021 for a slide.",
+      "steps": [
+        {
+          "call": "palanor_create_chart",
+          "args": {
+            "signals": [
+              {
+                "slug": "rates.spread_2y10y"
+              }
+            ],
+            "from": "2021-01-01"
+          },
+          "expect": [
+            "id",
+            "status"
+          ]
+        },
+        {
+          "call": "palanor_get_chart",
+          "args": {
+            "id": "$0.id"
+          },
+          "poll": {
+            "until": "status",
+            "equals": "done",
+            "every_s": 15,
+            "max_s": 240
+          },
+          "expect": [
+            "assets.0.url",
+            "attribution.0",
+            "claim"
+          ]
+        }
+      ],
+      "look_at": "Poll `palanor_get_chart` until `status` is `done`, then give `assets[0].url`, the resolved `claim` and every `attribution` line.",
+      "answer": "Here is the chart: <assets[0].url>. Headline: \"0.3 as of 2026-11-17, against 1.0 in 2021-01.\"\n\n<every line of attribution, unchanged>"
+    },
+    {
+      "id": "foresight-free-key",
+      "question": "Where will unemployment be in a month?",
+      "steps": [
+        {
+          "call": "palanor_get_foresight",
+          "args": {
+            "slug": "fred_unemployment"
+          },
+          "expect_error": true
+        }
+      ],
+      "look_at": "On a Free key this is an error: Foresight needs a Pro or Enterprise key. Say that; don't retry and don't make up a projection.",
+      "answer": "Palanor's projections (Foresight) need a Pro or Enterprise key, and this connection uses a Free key. The latest reading is 4.1% for October 2026 (BLS, via Palanor)."
+    }
+  ]
+}

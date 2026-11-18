@@ -1,0 +1,177 @@
+{
+  "_about": "The one source for every variant of the Palanor skill. build.py renders dist/ from this file, SKILL.body.md, references/ and flows.json; check.py fails CI when dist/ drifts or a tool name or argument is not on the live server.",
+  "name": "palanor",
+  "description": "Sourced economic data, indices and charts from Palanor MCP. Finds a U.S. or world data series (rates, the yield curve, jobs, inflation, energy, housing, trade), says where it stands in its own record with dated changes, reads Palanor Custom Indices and Currents, makes a chart or embed, and cites the source and licence from each result's provenance block. Use when the user asks about economic or market data, a Palanor index or Current, or wants a chart of public data with its source.",
+  "license": "MIT",
+  "compatibility": "Needs the Palanor MCP server (https://mcp.palanor.com, Streamable HTTP) connected in the agent, signed in with a Palanor account or a Palanor API key sent as an Authorization: Bearer header (free key: https://palanor.com/developers/keys). Needs network access.",
+  "metadata": {
+    "version": "1.0.0",
+    "author": "Palanor, Inc.",
+    "homepage": "https://palanor.com/mcp",
+    "repository": "https://github.com/palanorinc/outcome-evals/tree/main/skills/palanor",
+    "mcp-server": "https://mcp.palanor.com"
+  },
+  "server": "https://mcp.palanor.com",
+  "keys_url": "https://palanor.com/developers/keys",
+  "tools_taught": [
+    "palanor_search_signals",
+    "palanor_list_signals",
+    "palanor_get_signal",
+    "palanor_get_latest",
+    "palanor_get_observations",
+    "palanor_list_indices",
+    "palanor_get_index",
+    "palanor_list_currents",
+    "palanor_get_current",
+    "palanor_create_chart",
+    "palanor_get_chart",
+    "palanor_get_embed_code",
+    "palanor_get_foresight"
+  ],
+  "variants": {
+    "agentskills": {
+      "_about": "The Agent Skills standard (agentskills.io). Validated with skills-ref. Loads as is in any harness that reads the standard.",
+      "setup": [
+        "## Before the first call",
+        "",
+        "The tools below come from the Palanor MCP server. If they aren't in your tool list, the server isn't connected:",
+        "tell the user to add `{server}` as a remote (Streamable HTTP) MCP server in their agent, signed in with Palanor or",
+        "with a key sent as `Authorization: Bearer <key>` (a free key takes a minute at {keys_url}). Don't try to reach",
+        "the server some other way, and never ask the user to paste a key into the chat.",
+        "",
+        "Some harnesses put a prefix on MCP tool names (`palanor__palanor_get_signal`, `mcp__palanor__palanor_get_signal`).",
+        "The names in this skill are the server's own; match them to whatever prefix your tool list shows."
+      ]
+    },
+    "openclaw": {
+      "_about": "OpenClaw (tested with openclaw 2026.11.5). Reads the standard; adds metadata.openclaw so `openclaw skills check` reports the missing key. Native MCP: tools appear as palanor__<tool>.",
+      "metadata": {
+        "openclaw": {
+          "emoji": "🔭",
+          "homepage": "https://palanor.com/mcp",
+          "primaryEnv": "PALANOR_API_KEY",
+          "requires": {
+            "env": [
+              "PALANOR_API_KEY"
+            ]
+          }
+        }
+      },
+      "setup": [
+        "## Before the first call",
+        "",
+        "In OpenClaw the server's tools appear with the server name in front: `palanor__palanor_get_signal` for",
+        "`palanor_get_signal`, and so on. The names in this skill are the server's own; add the `palanor__` prefix when",
+        "you call them.",
+        "",
+        "If no `palanor__` tools are in your tool list, the server isn't connected. Tell the user to run:",
+        "",
+        "```bash",
+        "openclaw mcp add palanor --url {server} --transport streamable-http \\",
+        "  --header 'Authorization=Bearer ${PALANOR_API_KEY}'",
+        "```",
+        "",
+        "with `PALANOR_API_KEY` set in the Gateway's environment (the shell or `~/.openclaw/.env`; a free key takes a",
+        "minute at {keys_url}), then restart the Gateway. Never ask the user to paste a key into the chat."
+      ]
+    },
+    "goose": {
+      "_about": "Goose (tested with goose 1.60.1). Reads the standard from ~/.agents/skills; the recipe bundles the MCP extension (header from PALANOR_API_KEY) with the summon extension, which loads skills. Tools appear as palanor__<tool>.",
+      "setup": [
+        "## Before the first call",
+        "",
+        "In Goose the server's tools appear with the extension name in front: `palanor__palanor_get_signal` for",
+        "`palanor_get_signal`, and so on. The names in this skill are the server's own; add the `palanor__` prefix when",
+        "you call them.",
+        "",
+        "If no `palanor__` tools are available, the extension isn't enabled. Tell the user to start Goose with the",
+        "Palanor recipe (`goose session --recipe palanor.recipe.yaml`, with `PALANOR_API_KEY` set; a free key takes a",
+        "minute at {keys_url}), or to add `{server}` as a Remote Extension (Streamable HTTP) with an",
+        "`Authorization: Bearer <key>` header in `goose configure`. Never ask the user to paste a key into the chat."
+      ],
+      "extra_files": {
+        "palanor.recipe.yaml": [
+          "# Goose recipe: the Palanor MCP extension plus the Palanor skill.",
+          "# Generated by skills/palanor/tools/build.py from skills/palanor/source. Do not edit by hand.",
+          "# Run: PALANOR_API_KEY=... goose session --recipe palanor.recipe.yaml",
+          "version: \"{version}\"",
+          "title: Palanor",
+          "description: Read Palanor's public data lattice (signals, Custom Indices, Currents, charts) with sources and licences.",
+          "instructions: |",
+          "  Use the palanor extension's tools (named palanor__<tool>) for questions about economic and market data,",
+          "  Palanor Custom Indices and Currents, and sourced charts. Load the palanor skill first (load_skill) and follow it.",
+          "  Find slugs with palanor__palanor_search_signals; never guess one. Give every number with its observation date",
+          "  and every change with both of its dates. Cite each value from its provenance block: the attribution line and the",
+          "  licence name. A signal the server says is not licensed for redistribution, an embed with embeddable false, or an",
+          "  index component with latest_value_withheld is display-only on palanor.com: never present it as downloadable,",
+          "  and never fill in its value from elsewhere.",
+          "extensions:",
+          "  - type: streamable_http",
+          "    name: palanor",
+          "    description: Palanor MCP server (read-only public data lattice)",
+          "    uri: {server}",
+          "    headers:",
+          "      Authorization: \"Bearer ${PALANOR_API_KEY}\"",
+          "    env_keys:",
+          "      - PALANOR_API_KEY",
+          "    timeout: 300",
+          "  - type: platform",
+          "    name: summon"
+        ]
+      }
+    },
+    "hermes": {
+      "_about": "Hermes Agent (tested with hermes-agent v0.23.2). Reads the standard; adds version, author, required_environment_variables (Hermes asks for the key once and keeps it in ~/.hermes/.env, where the MCP header reads it) and metadata.hermes. Tools appear as mcp__palanor__<tool>.",
+      "frontmatter_order": [
+        "version",
+        "author",
+        "license",
+        "compatibility",
+        "required_environment_variables",
+        "metadata"
+      ],
+      "extra_fields": {
+        "version": "1.0.0",
+        "author": "Palanor, Inc.",
+        "required_environment_variables": {
+          "__raw__": "\n  - name: PALANOR_API_KEY\n    prompt: \"Palanor API key (free at https://palanor.com/developers/keys)\"\n    help: \"https://palanor.com/developers/keys\"\n    required_for: \"the Palanor MCP server's Authorization header\""
+        }
+      },
+      "metadata": {
+        "hermes": {
+          "tags": [
+            "data",
+            "economics",
+            "finance",
+            "mcp",
+            "charts",
+            "citations"
+          ],
+          "category": "research"
+        }
+      },
+      "setup": [
+        "## Before the first call",
+        "",
+        "In Hermes the server's tools appear as `mcp__palanor__palanor_get_signal` for `palanor_get_signal`, and so on",
+        "(when the server is named `palanor` in `config.yaml`). The names in this skill are the server's own; add the",
+        "`mcp__palanor__` prefix when you call them.",
+        "",
+        "If no `mcp__palanor__` tools are in your tool list, the server isn't connected. Tell the user to add this to",
+        "`~/.hermes/config.yaml` and run `/reload-mcp`:",
+        "",
+        "```yaml",
+        "mcp_servers:",
+        "  palanor:",
+        "    url: \"{server}\"",
+        "    headers:",
+        "      Authorization: \"Bearer ${PALANOR_API_KEY}\"",
+        "```",
+        "",
+        "`PALANOR_API_KEY` goes in `~/.hermes/.env` (Hermes asks for it when this skill loads; a free key takes a minute",
+        "at {keys_url}). Never ask the user to paste a key into the chat."
+      ],
+      "description": "Sourced economic data, indices and charts from Palanor MCP."
+    }
+  }
+}

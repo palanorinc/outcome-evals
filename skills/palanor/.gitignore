@@ -1,0 +1,2 @@
+# The generated skill variants are committed (the root .gitignore ignores dist/ for Python builds).
+!dist/

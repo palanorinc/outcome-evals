@@ -1,0 +1,63 @@
+name: skill
+
+# The Palanor agent skill (skills/palanor): the variants match the source, every tool name and argument exists on
+# the live server, and each harness's own validator accepts its folder. Weekly too, so a tool renamed on the
+# server shows up within a week.
+
+on:
+  push:
+    branches: [main]
+    paths: ["skills/palanor/**", ".github/workflows/skill.yml"]
+  pull_request:
+    paths: ["skills/palanor/**", ".github/workflows/skill.yml"]
+  schedule:
+    - cron: "17 14 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drift-and-tools:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Drift check (dist/ is what source/ generates)
+        run: python skills/palanor/tools/build.py --check
+      - name: Tool names and arguments against the live server's tools/list
+        run: python skills/palanor/tools/check.py
+      - name: Lint the tools
+        run: pip install "ruff>=0.6" && ruff check skills/palanor/tools
+
+  validators:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Agent Skills reference validator (skills-ref 0.1.1)
+        run: |
+          pip install "skills-ref==0.1.1"
+          for v in agentskills openclaw goose; do agentskills validate "skills/palanor/dist/$v/palanor"; done
+      - name: Hermes Agent's own skill linter (hermes-agent v0.23.2)
+        run: |
+          pip install pyyaml "ruamel.yaml>=0.18"
+          mkdir -p /tmp/hermes && curl -fsSL https://codeload.github.com/NousResearch/hermes-agent/tar.gz/refs/tags/v0.23.2 | tar -xz -C /tmp/hermes --strip-components=1
+          PYTHONPATH=/tmp/hermes python - <<'PY'
+          import sys
+          from pathlib import Path
+          from tools.skill_linter import lint_skill
+          findings = lint_skill(Path("skills/palanor/dist/hermes/palanor/SKILL.md"))
+          for f in findings:
+              print(f.severity, f.rule, f.message)
+          sys.exit(1 if any(f.severity == "error" for f in findings) else 0)
+          PY
+      - name: Goose recipe validator (goose 1.60.1; no model)
+        run: |
+          mkdir -p /tmp/goose && curl -fsSL https://github.com/aaif-goose/goose/releases/download/v1.60.1/goose-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /tmp/goose
+          GOOSE=$(find /tmp/goose -type f -name goose | head -1)
+          HOME=$(mktemp -d) GOOSE_DISABLE_KEYRING=1 "$GOOSE" recipe validate skills/palanor/dist/goose/palanor.recipe.yaml
